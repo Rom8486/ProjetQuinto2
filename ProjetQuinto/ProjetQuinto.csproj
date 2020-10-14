@@ -67,9 +67,6 @@
     <Compile Include="Interface jeux.Designer.cs">
       <DependentUpon>Interface jeux.cs</DependentUpon>
     </Compile>
-    <Compile Include="Joueur.cs" />
-    <Compile Include="Mot.cs" />
-    <Compile Include="Mots.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="MDI.resx">
@@ -103,6 +100,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Quinto2Dll\Quinto2Dll.csproj">
+      <Project>{ed8fab54-3015-4d89-8ea6-582c3ef59a82}</Project>
+      <Name>Quinto2Dll</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
