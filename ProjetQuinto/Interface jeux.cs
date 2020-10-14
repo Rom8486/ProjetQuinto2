@@ -66,26 +66,6 @@ namespace ProjetQuinto
 
         }
 
-        //public void LoadTexte()
-        //{
-        //    string path = @"c:\Windows\temp\Lexique.txt";
-        //    using (StreamReader sr = File.OpenText(path))
-        //    {
-        //        string s = "";
-        //        while ((s = sr.ReadLine()) != null)
-        //        {
-        //            string[] result = s.Split(';');
-        //            for (int i = 0; i < result.Length; i++)
-        //            {
-        //                TbMotADeviner.Text += result[i];
-        //            }
-
-
-        //        }
-
-        //    }
-        //}
-
         #region Gestionnaires des contextes
         void GestionnaireContextes(Contextes contexte)
         {
