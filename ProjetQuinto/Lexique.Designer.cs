@@ -68,6 +68,7 @@
             this.Controls.Add(this.tbMot);
             this.Controls.Add(this.label1);
             this.Name = "Lexique";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lexique";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lexique_FormClosed);
             this.ResumeLayout(false);

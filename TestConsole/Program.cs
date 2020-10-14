@@ -9,7 +9,14 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-          
+            String s = "robot";
+            char[] charArray = s.ToCharArray();
+
+            for (int i = 0; i < charArray.Length; i++)
+            {
+                Console.WriteLine(charArray[i]);
+            }
+
         }
         
 
