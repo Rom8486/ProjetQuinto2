@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Serialisation.cs" />
     <Compile Include="Joueur.cs" />
     <Compile Include="MDI.cs">
       <SubType>Form</SubType>

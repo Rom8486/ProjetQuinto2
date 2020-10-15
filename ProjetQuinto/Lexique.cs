@@ -19,6 +19,7 @@ namespace ProjetQuinto
         public Lexique()
         {
             InitializeComponent();
+       
         }
         private static Lexique _instance;
         public static Lexique GetInstance()
@@ -45,5 +46,6 @@ namespace ProjetQuinto
         }
 
 
+        }
     }
 }
