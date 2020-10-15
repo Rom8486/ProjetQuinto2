@@ -16,7 +16,9 @@ namespace ProjetQuinto
         private int _nbPropositions;
         private int _nbErreurs;
         string _alias;
-       
+
+
+        #region Get/Set
         public int NbPoints 
         { get { return _nbPointsParManche; }
             set { _nbPointsParManche = value; }
@@ -45,13 +47,18 @@ namespace ProjetQuinto
             get { return _alias; }
             set { _alias = value; }
         }
+
+        #endregion
+
         enum NiveauDifficulte
         {
             facile=0,
             difficile=1,
             expert=2
         }
-        void GestionDifficulte(NiveauDifficulte niveauDifficulte)
+
+        #region Méthodes Difficulté
+        static void GestionDifficulte(NiveauDifficulte niveauDifficulte)
         {
             switch (niveauDifficulte)
             {
@@ -75,13 +82,15 @@ namespace ProjetQuinto
                     break;
             }
         }
+        #endregion
+
         #region FonctionPerdu
         private void Perdu()
         {
-           DialogResult Dia= MessageBox.Show("Dommage Vous avez perdu!!\n :(\n Voulez vous rejouer?", "Perdu",MessageBoxButtons.YesNo);
+           DialogResult Dia= MessageBox.Show("Dommage Vous avez perdu!!\n :(\n Voulez vous rejouer?", "Perdu", MessageBoxButtons.YesNo);
             if (Dia== DialogResult.Yes)
             {
-                //remettre contexte origine
+                //GestionnaireContextes(Contextes.Initial);
             }
             else
             {
@@ -90,13 +99,14 @@ namespace ProjetQuinto
             }
         }
         #endregion
-        #region gagne
+
+        #region Gagne
         private void Gagne()
         {
             DialogResult Dia = MessageBox.Show("Bravo vous avez gagné!!\n :)))\n Voulez vous rejouer?", "Gagné", MessageBoxButtons.YesNo);
             if (Dia == DialogResult.Yes)
             {
-                //remettre contexte origine
+                //GestionnaireContextes(Contextes.Initial);
             }
             else
             {
@@ -106,6 +116,7 @@ namespace ProjetQuinto
 
         }
         #endregion
+
         #region Calcul PointParManche
         private double CalculNbPointsParManche(TimeSpan tps, int NbErreurs, NiveauDifficulte niveauDifficulte )
         {
@@ -167,11 +178,6 @@ namespace ProjetQuinto
             
         }
         #endregion
-
-        
-
-
-
 
     }
 }

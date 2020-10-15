@@ -39,14 +39,11 @@ namespace ProjetQuinto
         {
             Mot mot = new Mot();
             mot.Texte = tbMot.Text;
-           
             mots.Add(mot);
             tbMot.Clear();
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsJson.json", mots);
             
-            
-
-
+        }
 
 
         }

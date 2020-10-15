@@ -11,9 +11,6 @@ namespace ProjetQuinto
 
     public class Mots : HashSet<Mot>
     {
-        
-       
-      
 
     }
 }

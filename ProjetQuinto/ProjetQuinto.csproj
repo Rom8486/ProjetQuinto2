@@ -70,9 +70,11 @@
       <DependentUpon>Interface jeux.cs</DependentUpon>
     </Compile>
     <Compile Include="Mot.cs" />
+    <Compile Include="MotADeviner.cs" />
     <Compile Include="Mots.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialisation.cs" />
     <EmbeddedResource Include="MDI.resx">
       <DependentUpon>MDI.cs</DependentUpon>
     </EmbeddedResource>

@@ -6,6 +6,7 @@ namespace ProjetQuinto
     {
         int longueur = 0;
         string texte = "";
+
         public Mot()
         {
         }
