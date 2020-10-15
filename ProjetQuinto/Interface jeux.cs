@@ -49,26 +49,25 @@ namespace ProjetQuinto
             //Penser à stopper timer à la fin de la manche
 
         }
+
+        public DateTime TempsDebut()
+        {
+            DateTime TpsDebut = DateTime.Now;
+            return TpsDebut;
+        }
+        public DateTime TempsFin()
+        {
+            DateTime TpsFin = DateTime.Now;
+            return TpsFin;
+        }
+        public int CalculerTemps(DateTime tpsDebut, DateTime tpsFin)
+        {
+            TimeSpan span = (tpsFin - tpsDebut);
+            int resultat = (int)span.TotalSeconds;
+            return resultat;
+        }
       
-        //public void LoadTexte()
-        //{
-        //    string path = @"c:\Windows\temp\Lexique.txt";
-        //    using (StreamReader sr = File.OpenText(path))
-        //    {
-        //        string s = "";
-        //        while ((s = sr.ReadLine()) != null)
-        //        {
-        //            string[] result = s.Split(';');
-        //            for (int i = 0; i < result.Length; i++)
-        //            {
-        //                TbMotADeviner.Text += result[i];
-        //            }
-
-
-        //        }
-
-        //    }
-        //}
+      
 
 
         public Interface_jeux()
@@ -90,7 +89,8 @@ namespace ProjetQuinto
         private void btnStart_Click(object sender, EventArgs e)
         {
            // LoadTexte();
-            CreationTimer();
+           // CreationTimer();
+           Mots.LoadJson(typeof(Mots));
 
 
 
