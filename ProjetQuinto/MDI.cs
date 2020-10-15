@@ -20,6 +20,7 @@ namespace ProjetQuinto
             btnQuitter.Click += btnQuitter_Click;
         }
 
+        #region Singletons Nouvelle Partie & Lexique
         private void nouvellePartieToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Interface_jeux interface_jeux = Interface_jeux.GetInstance();
@@ -27,16 +28,19 @@ namespace ProjetQuinto
             interface_jeux.Show();
         }
 
-        private void btnQuitter_Click(object sender, EventArgs e)
+        private void lexiqueToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            Lexique lexique = Lexique.GetInstance();
+            lexique.MdiParent = this;
+            lexique.Show();
         }
+        #endregion
 
         #region Thèmes
         private void bntFondEcranOcean_Click(object sender, EventArgs e)
         {
             
-            Image monImage = new Bitmap(@"C:\Users\CDA\Desktop\Projet de groupe Quinto\Fonds écran\Océan.jpg");
+            Image monImage = new Bitmap(@"C:\Users\CDA\source\repos\ProjetQuinto2\Fonds écran\Océan.jpg");
             this.BackgroundImage = monImage;
 
             if (btnFondEcranOcean.Checked)
@@ -49,7 +53,7 @@ namespace ProjetQuinto
         }
         private void btnFondEcranNatureSauvage_Click(object sender, EventArgs e)
         {
-            Image monImage = new Bitmap(@"C:\Users\CDA\Desktop\Projet de groupe Quinto\Fonds écran\Nature Sauvage.jpg");
+            Image monImage = new Bitmap(@"C:\Users\CDA\source\repos\ProjetQuinto2\Fonds écran\Nature Sauvage.jpg");
             this.BackgroundImage = monImage;
 
             if (btnFondEcranNatureSauvage.Checked)
@@ -62,7 +66,7 @@ namespace ProjetQuinto
         }
         private void btnFondEcranCasino_Click(object sender, EventArgs e)
         {
-            Image monImage = new Bitmap(@"C:\Users\CDA\Desktop\Projet de groupe Quinto\Fonds écran\Casino.jpg");
+            Image monImage = new Bitmap(@"C:\Users\CDA\source\repos\ProjetQuinto2\Fonds écran\Casino.jpg");
             this.BackgroundImage = monImage;
            
             if (btnFondEcranCasino.Checked)
@@ -83,7 +87,7 @@ namespace ProjetQuinto
                 btnFondEcranClassique.Checked = false;   
             }
 
-            Image monImage = new Bitmap(@"C:\Users\CDA\Desktop\Projet de groupe Quinto\Fonds écran\Quinto.jpg");
+            Image monImage = new Bitmap(@"C:\Users\CDA\source\repos\ProjetQuinto2\Fonds écran\Quinto.jpg");
             this.BackgroundImage = monImage;
         }
         private void btnFondEcranClassique_Click(object sender, EventArgs e)
@@ -95,8 +99,9 @@ namespace ProjetQuinto
                 btnFondEcranCasino.Checked = false;
                 btnFondEcranQuinto.Checked = false;
             }
+           
+            BackColor = MdiMère.DefaultBackColor; // Ne marche pas; à revoir.
 
-            this.BackColor = System.Drawing.Color.Empty;
         }
         #endregion
 
@@ -112,16 +117,11 @@ namespace ProjetQuinto
                 "Règles du jeu", MessageBoxButtons.OK, MessageBoxIcon.None);
         }
 
-
-
-
         #endregion
 
-        private void lexiqueToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnQuitter_Click(object sender, EventArgs e)
         {
-            Lexique lexique = Lexique.GetInstance();
-            lexique.MdiParent = this;
-            lexique.Show();
+            Close();
         }
     }
 

@@ -56,7 +56,7 @@
             this.lexiqueToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1904, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -109,7 +109,7 @@
             this.btnFondEcranQuinto,
             this.btnFondEcranClassique});
             this.btnThemes.Name = "btnThemes";
-            this.btnThemes.Size = new System.Drawing.Size(116, 22);
+            this.btnThemes.Size = new System.Drawing.Size(180, 22);
             this.btnThemes.Text = "Thèmes";
             // 
             // btnFondEcranOcean
@@ -117,7 +117,7 @@
             this.btnFondEcranOcean.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnFondEcranOcean.CheckOnClick = true;
             this.btnFondEcranOcean.Name = "btnFondEcranOcean";
-            this.btnFondEcranOcean.Size = new System.Drawing.Size(157, 22);
+            this.btnFondEcranOcean.Size = new System.Drawing.Size(180, 22);
             this.btnFondEcranOcean.Text = "Océan";
             this.btnFondEcranOcean.Click += new System.EventHandler(this.bntFondEcranOcean_Click);
             // 
@@ -126,7 +126,7 @@
             this.btnFondEcranNatureSauvage.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnFondEcranNatureSauvage.CheckOnClick = true;
             this.btnFondEcranNatureSauvage.Name = "btnFondEcranNatureSauvage";
-            this.btnFondEcranNatureSauvage.Size = new System.Drawing.Size(157, 22);
+            this.btnFondEcranNatureSauvage.Size = new System.Drawing.Size(180, 22);
             this.btnFondEcranNatureSauvage.Text = "Nature Sauvage";
             this.btnFondEcranNatureSauvage.Click += new System.EventHandler(this.btnFondEcranNatureSauvage_Click);
             // 
@@ -135,7 +135,7 @@
             this.btnFondEcranCasino.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnFondEcranCasino.CheckOnClick = true;
             this.btnFondEcranCasino.Name = "btnFondEcranCasino";
-            this.btnFondEcranCasino.Size = new System.Drawing.Size(157, 22);
+            this.btnFondEcranCasino.Size = new System.Drawing.Size(180, 22);
             this.btnFondEcranCasino.Text = "Casino";
             this.btnFondEcranCasino.Click += new System.EventHandler(this.btnFondEcranCasino_Click);
             // 
@@ -144,7 +144,7 @@
             this.btnFondEcranQuinto.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnFondEcranQuinto.CheckOnClick = true;
             this.btnFondEcranQuinto.Name = "btnFondEcranQuinto";
-            this.btnFondEcranQuinto.Size = new System.Drawing.Size(157, 22);
+            this.btnFondEcranQuinto.Size = new System.Drawing.Size(180, 22);
             this.btnFondEcranQuinto.Text = "Quinto";
             this.btnFondEcranQuinto.Click += new System.EventHandler(this.btnFondEcranQuinto_Click);
             // 
@@ -152,7 +152,7 @@
             // 
             this.btnFondEcranClassique.CheckOnClick = true;
             this.btnFondEcranClassique.Name = "btnFondEcranClassique";
-            this.btnFondEcranClassique.Size = new System.Drawing.Size(157, 22);
+            this.btnFondEcranClassique.Size = new System.Drawing.Size(180, 22);
             this.btnFondEcranClassique.Text = "Classique";
             this.btnFondEcranClassique.Click += new System.EventHandler(this.btnFondEcranClassique_Click);
             // 
@@ -181,7 +181,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1904, 1041);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;

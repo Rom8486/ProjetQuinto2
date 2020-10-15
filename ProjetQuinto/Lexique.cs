@@ -15,6 +15,7 @@ namespace ProjetQuinto
 {
     public partial class Lexique : Form
     {
+        Mots mots = new Mots();
         public Lexique()
         {
             InitializeComponent();
@@ -36,24 +37,13 @@ namespace ProjetQuinto
         private void btnValider_Click(object sender, EventArgs e)
         {
             Mot mot = new Mot();
-            mot.Texte= tbMot.Text;
-            SaveJson(mot);
+            mot.Texte = tbMot.Text;
+            mots.Add(mot);
             tbMot.Clear();
-
-
-
+            Serialisation.SaveJson(@"C:\Windows\Temp\MotsJson.json", mots);
+            
         }
-        public void SaveJson(Mot mot)
-        {
-            string filepath = @"c:\Windows\temp\MotsJson.json";
-            JsonSerializer j = new JsonSerializer();
-            using (StreamWriter sw = new StreamWriter(filepath, true))
-            using (JsonWriter writer = new JsonTextWriter(sw))
-            {
-                j.Serialize(writer, mot);
-            }
 
-        }
 
     }
 }
