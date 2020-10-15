@@ -561,10 +561,11 @@
             // 
             // textBox4
             // 
+            this.textBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox4.Location = new System.Drawing.Point(84, 65);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
-            this.textBox4.Size = new System.Drawing.Size(56, 22);
+            this.textBox4.Size = new System.Drawing.Size(56, 26);
             this.textBox4.TabIndex = 0;
             // 
             // label3
@@ -578,10 +579,11 @@
             // 
             // textBox3
             // 
+            this.textBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox3.Location = new System.Drawing.Point(62, 25);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
-            this.textBox3.Size = new System.Drawing.Size(27, 22);
+            this.textBox3.Size = new System.Drawing.Size(27, 26);
             this.textBox3.TabIndex = 0;
             this.textBox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -596,10 +598,11 @@
             // 
             // textBox2
             // 
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox2.Location = new System.Drawing.Point(14, 25);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(27, 22);
+            this.textBox2.Size = new System.Drawing.Size(27, 26);
             this.textBox2.TabIndex = 0;
             this.textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -634,10 +637,9 @@
             this.tbTimer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTimer.ForeColor = System.Drawing.Color.DarkRed;
             this.tbTimer.Location = new System.Drawing.Point(207, 198);
-            this.tbTimer.Multiline = true;
             this.tbTimer.Name = "tbTimer";
             this.tbTimer.ReadOnly = true;
-            this.tbTimer.Size = new System.Drawing.Size(28, 28);
+            this.tbTimer.Size = new System.Drawing.Size(28, 26);
             this.tbTimer.TabIndex = 0;
             this.tbTimer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -659,13 +661,14 @@
             this.tbNbrEssais.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tbNbrEssais.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbNbrEssais.Location = new System.Drawing.Point(616, 198);
-            this.tbNbrEssais.Multiline = true;
             this.tbNbrEssais.Name = "tbNbrEssais";
             this.tbNbrEssais.ReadOnly = true;
-            this.tbNbrEssais.Size = new System.Drawing.Size(66, 32);
+            this.tbNbrEssais.Size = new System.Drawing.Size(66, 26);
             this.tbNbrEssais.TabIndex = 0;
             this.tbNbrEssais.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbNbrEssais.TextChanged += new System.EventHandler(this.tbNbrEssais_TextChanged);
             // 
             // Interface_jeux
             // 

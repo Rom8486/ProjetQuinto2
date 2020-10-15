@@ -12,10 +12,11 @@ namespace TestConsole
             String s = "robot";
             char[] charArray = s.ToCharArray();
 
-            for (int i = 0; i < charArray.Length; i++)
+            foreach (char c in charArray)
             {
-                Console.WriteLine(charArray[i]);
+                Console.WriteLine(c);
             }
+   
 
         }
         
