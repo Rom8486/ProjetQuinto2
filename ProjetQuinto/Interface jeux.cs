@@ -64,6 +64,7 @@ namespace ProjetQuinto
             timer.Start();
             //Penser à stopper timer à la fin de la manche
 
+
         }
 
         #region Gestionnaires des contextes
