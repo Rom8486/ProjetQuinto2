@@ -15,9 +15,11 @@ namespace ProjetQuinto
 {
     public partial class Lexique : Form
     {
+        Mots mots = new Mots();
         public Lexique()
         {
             InitializeComponent();
+       
         }
         private static Lexique _instance;
         public static Lexique GetInstance()
@@ -35,22 +37,18 @@ namespace ProjetQuinto
         }
         private void btnValider_Click(object sender, EventArgs e)
         {
-            string saisie = tbMot.Text;
-         //   SaveJson(tbMot.Text);
+            Mot mot = new Mot();
+            mot.Texte = tbMot.Text;
+           
+            mots.Add(mot);
+            tbMot.Clear();
+            Serialisation.SaveJson(@"C:\Windows\Temp\MotsJson.json", mots);
             
             
+
+
+
+
         }
-        //public void SaveJson(string data)
-        //{
-        //    string filepath = @"c:\Windows\temp\MotsJson.json";
-        //    JsonSerializer j = new JsonSerializer();
-        //    using (StreamWriter sw = new StreamWriter(filepath))
-        //    using (JsonWriter writer = new JsonTextWriter(sw))
-        //    {
-        //        j.Serialize(writer, data);
-        //    }
-
-        //}
-
     }
 }

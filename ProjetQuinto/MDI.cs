@@ -16,7 +16,9 @@ namespace ProjetQuinto
 
         public MdiMère()
         {
+            
             InitializeComponent();
+            
             btnQuitter.Click += btnQuitter_Click;
         }
 

@@ -51,30 +51,30 @@ namespace ProjetQuinto
             difficile=1,
             expert=2
         }
-        //void GestionDifficulte(NiveauDifficulte niveauDifficulte)
-        //{
-        //    switch (niveauDifficulte)
-        //    {
-        //        case NiveauDifficulte.facile:
-        //             int _nbEssaisMax = 8;
-        //             double malusTps = 2;
-        //             double MalusErr = 2;
-        //            //Constantes à redefinir
-        //            break;
-        //        case NiveauDifficulte.difficile:
-        //            _nbEssaisMax = 7;
-        //            malusTps = 1.8;
-        //            MalusErr = 1.8;
-        //            break;
-        //        case NiveauDifficulte.expert:
-        //            _nbEssaisMax = 6;
-        //            malusTps = 1.6;
-        //            MalusErr = 1.6;
-        //            break;
-        //        default:
-        //            break;
-        //    }
-        //   }
+        void GestionDifficulte(NiveauDifficulte niveauDifficulte)
+        {
+            switch (niveauDifficulte)
+            {
+                case NiveauDifficulte.facile:
+                    int _nbEssaisMax = 8;
+                    double malusTps = 2;
+                    double MalusErr = 2;
+                    //Constantes à redefinir
+                    break;
+                case NiveauDifficulte.difficile:
+                    _nbEssaisMax = 7;
+                    malusTps = 1.8;
+                    MalusErr = 1.8;
+                    break;
+                case NiveauDifficulte.expert:
+                    _nbEssaisMax = 6;
+                    malusTps = 1.6;
+                    MalusErr = 1.6;
+                    break;
+                default:
+                    break;
+            }
+        }
         #region FonctionPerdu
         private void Perdu()
         {

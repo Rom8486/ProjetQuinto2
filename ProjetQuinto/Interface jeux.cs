@@ -10,7 +10,7 @@ using System.Windows.Forms;
 //using System.Threading;
 using System.Diagnostics;
 using System.IO;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 //using System.Threading;
 
 
@@ -91,7 +91,12 @@ namespace ProjetQuinto
         {
            // LoadTexte();
             CreationTimer();
-
+            Mots essai=(Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsJson.json", typeof(Mots));
+            foreach (var item in essai)
+            {
+                TbMotADeviner.Text += $"{item.Texte} " ²;
+            }
+           
 
 
         }
