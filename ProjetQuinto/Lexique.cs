@@ -44,8 +44,6 @@ namespace ProjetQuinto
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsJson.json", mots);
             
         }
-
-
-        }
+        
     }
 }

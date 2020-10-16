@@ -60,7 +60,6 @@ namespace ProjetQuinto
             timer.Start();
             //Penser à stopper timer à la fin de la manche
 
-
         }
 
         #region Gestionnaires des contextes
@@ -115,6 +114,35 @@ namespace ProjetQuinto
             Button bouton = sender as Button;
             tbMotADeviner.Text += bouton.Text;
             bouton.Enabled = false;
+
+        }
+
+        static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
+        {
+            int nbrEssais;
+            bool resultat;
+            char[] tabChar = motaDecouvrir.ToCharArray();
+
+            resultat = false;
+
+            for (int i = 0; i < motEnCoursDecouverte.Length; i++)
+            {
+                if (motEnCoursDecouverte[i] == lettre)
+                {
+                    return true;
+                    tabChar[i] = lettre;
+
+                    if (resultat == true)
+                    {
+                        motaDecouvrir = tabChar.ToString();
+                    }
+                    else
+                    {
+                        nbrEssais--;
+                    }
+                }
+            }
+            return resultat;
         }
 
         private void btnStart_Click(object sender, EventArgs e)
@@ -123,11 +151,10 @@ namespace ProjetQuinto
             GestionnaireContextes(Contextes.GameStarted);
             btnStart.Enabled = false;
             Mots essai = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsJson.json", typeof(Mots));
-            foreach (var item in essai)
-            {
-                tbMotADeviner.Text += $"{item.Texte} ";
-            }
-
+            //foreach (var item in essai)
+            //{
+            //    tbMotADeviner.Text += $"{item.Texte} ";
+            //}
         }
         #endregion
 
@@ -151,8 +178,7 @@ namespace ProjetQuinto
                 //GestionDifficulte(NiveauDifficulte.facile);
                 int manche = 3;
                 textBox3.Text = manche.ToString();
-                int essais = 8;
-                tbNbrEssais.Text = essais.ToString();
+
             }
         }
 
@@ -164,8 +190,7 @@ namespace ProjetQuinto
                //GestionDifficulte(NiveauDifficulte.difficile);
                 int manche = 4;
                 textBox3.Text = manche.ToString();
-                int essais = 7;
-                tbNbrEssais.Text = essais.ToString();
+
             }
         }
 
@@ -174,18 +199,25 @@ namespace ProjetQuinto
             if (radioButton3.Checked)
             {
                 GestionnaireContextes(Contextes.StartGame);
-                //GestionDifficulte(NiveauDifficulte.expert);
+                //Joueur.GestionDifficulte(NiveauDifficulte.expert);
                 int manche = 5;
                 textBox3.Text = manche.ToString();
-                int essais = 6;
-                tbNbrEssais.Text = essais.ToString();
+
             }
         }
         #endregion
 
-        private void tbNbrEssais_TextChanged(object sender, EventArgs e)
+        private void tbMotADeviner_TextChanged(object sender, EventArgs e)
         {
+            //RemplacerparTirer();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            int manche = 1;
+            textBox2.Text = manche.ToString();
 
         }
+
     }
 }
