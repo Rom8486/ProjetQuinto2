@@ -1,4 +1,4 @@
-﻿//using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,7 @@ namespace ProjetQuinto
         public Lexique()
         {
             InitializeComponent();
-       
+
         }
         private static Lexique _instance;
         public static Lexique GetInstance()
@@ -38,12 +38,14 @@ namespace ProjetQuinto
         private void btnValider_Click(object sender, EventArgs e)
         {
             Mot mot = new Mot();
-            mot.Texte = tbMot.Text;
+          //  mot.Texte = tbMot.Text;
             mots.Add(mot);
             tbMot.Clear();
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsJson.json", mots);
-            
+
         }
-        
+
+
     }
 }
+

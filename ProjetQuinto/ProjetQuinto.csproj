@@ -76,6 +76,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialisation.cs" />
+    <Compile Include="stringBuilder.cs" />
     <EmbeddedResource Include="MDI.resx">
       <DependentUpon>MDI.cs</DependentUpon>
     </EmbeddedResource>

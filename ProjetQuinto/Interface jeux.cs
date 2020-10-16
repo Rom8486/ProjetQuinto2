@@ -18,7 +18,9 @@ namespace ProjetQuinto
 {
     public partial class Interface_jeux : Form
     {
-       
+        Mot mot = new Mot();
+        Joueur joueur = new Joueur();
+        
         #region Singleton
         private static Interface_jeux _instance;
         public static Interface_jeux GetInstance()
@@ -36,7 +38,7 @@ namespace ProjetQuinto
         #endregion
 
         int duree = 0;
-
+        
         enum Contextes
         {
             Initial = 0,
@@ -49,6 +51,7 @@ namespace ProjetQuinto
         {
             InitializeComponent();
             GestionnaireContextes(Contextes.Initial);
+            
         }
 
         public void CreationTimer()
@@ -59,12 +62,31 @@ namespace ProjetQuinto
             timer.Tick += timer_Tick;
             timer.Start();
             //Penser à stopper timer à la fin de la manche
+        }
+        
 
+        public DateTime TempsDebut()
+        {
+            DateTime TpsDebut = DateTime.Now;
+            return TpsDebut;
+        }
+        public DateTime TempsFin()
+        {
+            DateTime TpsFin = DateTime.Now;
+            return TpsFin;
+        }
+        public int CalculerTemps(DateTime tpsDebut, DateTime tpsFin)
+        {
+            TimeSpan span = (tpsFin - tpsDebut);
+            int resultat = (int)span.TotalSeconds;
+            return resultat;
         }
 
-        #region Gestionnaires des contextes
+
+        #region Gestionnaire Contextes
+
         void GestionnaireContextes(Contextes contexte)
-        {
+        { 
             switch (contexte)
             {
                 case Contextes.Initial:
@@ -77,6 +99,7 @@ namespace ProjetQuinto
                     tbNbrEssais.Enabled = false;
                     tbMotADeviner.Enabled = false;
                     pnlClavier.Enabled = false;
+                    textBox2.Text = "0";
                     break;
                 case Contextes.StartGame:
                     gbDifficulté.Enabled = true;
@@ -112,9 +135,51 @@ namespace ProjetQuinto
         private void btnA_Click(object sender, EventArgs e)
         {
             Button bouton = sender as Button;
-            tbMotADeviner.Text += bouton.Text;
-            bouton.Enabled = false;
+            char lettre =bouton.Text[0];
+            bool MauvauseProposition = false;
 
+            for (int i = 0; i < mot.MotInitial.Length; i++)
+            {
+                
+                char[] tab = mot.MotInitial.ToCharArray();
+                if (tab[i]== lettre)
+                {
+                    tbMotADeviner.Text= tbMotADeviner.Text.Remove(i, 1).Insert(i, lettre.ToString());
+                    MauvauseProposition = true;
+                }
+               
+            }
+            if (!tbMotADeviner.Text.Contains('*'))
+            {
+                MessageBox.Show("Gagné!!");
+                joueur.NbManchesRemportees++;
+                textBox2.Text = joueur.NbManchesRemportees.ToString();
+            }
+            if (MauvauseProposition==false)
+            {
+                joueur.NbEssaiRestant--;
+            }
+            tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
+            if (joueur.NbEssaiRestant==0)
+            {
+               DialogResult dia= MessageBox.Show("Vous avez perdu! Voulez vous rejouer?", "Perdu!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dia==DialogResult.Yes)
+                {
+                    GestionnaireContextes(Contextes.Initial);
+                }
+                else if (dia == DialogResult.No)
+                {
+                    this.Close();
+                }
+
+
+            }
+
+            
+          
+
+            bouton.Enabled = false;
+           
         }
 
         static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
@@ -150,18 +215,13 @@ namespace ProjetQuinto
             CreationTimer();
             GestionnaireContextes(Contextes.GameStarted);
             btnStart.Enabled = false;
-            Mots essai = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsJson.json", typeof(Mots));
-            //foreach (var item in essai)
-            //{
-            //    tbMotADeviner.Text += $"{item.Texte} ";
-            //}
 
-            //tbMotADeviner.Text = "LIMOGES";
-            //int longueur = tbMotADeviner.Text.Length;
-            //for (int i = 0; i < longueur; i++)
-            //{
-            //    resultat += "_ ";
-            //}
+            joueur.NbEssaiRestant = 7;
+            tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
+            mot.MotInitial = "TOTO";
+            
+            tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
+
 
         }
         #endregion
