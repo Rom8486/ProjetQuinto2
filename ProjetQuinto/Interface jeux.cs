@@ -238,6 +238,7 @@ namespace ProjetQuinto
             this.BackgroundImage = Parent.BackgroundImage;
         }
 
+
         #region Radio Buttons
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
