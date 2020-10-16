@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ProjetQuinto
 {
-    class Joueur
+    public class Joueur
     {
 
         private int _nbPointsParManche;
@@ -110,7 +110,7 @@ namespace ProjetQuinto
             DialogResult Dia = MessageBox.Show("Bravo vous avez gagné!!\n :)))\n Voulez vous rejouer?", "Gagné", MessageBoxButtons.YesNo);
             if (Dia == DialogResult.Yes)
             {
-                //GestionnaireContextes(Contextes.Initial);
+                //Interface_jeux.GestionnaireContextes(Contextes.Initial);
             }
             else
             {

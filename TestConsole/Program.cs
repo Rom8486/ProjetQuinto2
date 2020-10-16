@@ -9,95 +9,140 @@ namespace TestConsole
     {
         static void Main(string[] args)
         {
-            //String s = "robot";
-            //char[] charArray = s.ToCharArray();
 
-            //foreach (char c in charArray)
-            //{
-            //    Console.WriteLine(c);
-            //}
+            //Console.WriteLine(Tirets("Romain"));
 
-            //}
-            // Console.WriteLine(MettreTirets("romain"));
-            //string texte = CheckerLettre2("tabulateur", 'u');
-            //foreach (int item in tableau)
-            //{
-            //    Console.Write(item.ToString()+" ");
-            //}
-
-            //int [] tab=CheckerLettre("alphabet",'a');
-            //foreach (int item in tab)
-            //{
-            //    Console.Write(item + "  ");
-            //}
-            //  Console.WriteLine(texte); 
-
-
-            Console.WriteLine(GetMotInitialUnderScore("lapin"));
-        }
-        public static string MettreTirets(string mot)
-        {
-            string resultat = "";
-            int longueur = mot.Length;
-            for (int i = 0; i < longueur; i++)
+            static string Tirets(string mot)
             {
-                resultat += "_ ";
-            }
-            return resultat;
-
-
-        }
-        public static int[] CheckerLettre(string MotADeviner, char lettre)
-        {
-            int longueur = MotADeviner.Length;
-            int[] tableau = new int[longueur];
-
-            for (int i = 0; i < longueur; i++)
-            {
-                if (MotADeviner[i] == lettre)
+                string resultat = "";
+                int longueur = mot.Length;
+                for (int i = 0; i < longueur; i++)
                 {
-                    tableau[i] = 1;
+                    resultat += "_ ";
+                }
+                return resultat;
+            }
+
+            Console.WriteLine(RemplacerLettre('A', "MANON", "*****"));
+
+
+            static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
+            {
+                int nbrEssais = 8;
+                bool resultat;
+                char[] tabChar = motEnCoursDecouverte.ToCharArray();
+
+                resultat = false;
+                for (int i = 0; i < motaDecouvrir.Length; i++)
+                {
+                   
+                    if (motaDecouvrir[i] == lettre)
+                    {
+                        resultat = true;
+                        tabChar[i] = lettre;
+                    }
+ 
+                }
+                if (resultat == true)
+                {
+                    motEnCoursDecouverte = new string(tabChar);
                 }
                 else
                 {
-                    tableau[i] = 0;
+                    nbrEssais--;
                 }
-            }
-            return tableau;
-        }
-        public static string CheckerLettre2(string MotADeviner, char lettre)
-        {
-            int longueur = MotADeviner.Length;
-            char[] tableau = new char[longueur];
+                return resultat;
 
-            for (int i = 0; i < longueur; i++)
+            }
+
+
+            //static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
+            //{
+            //    int nbrEssais;
+            //    bool resultat;
+            //    resultat = false;
+            //    char[] tabChar = motaDecouvrir.ToCharArray();
+
+
+            //    for (int i = 0; i < motEnCoursDecouverte.Length; i++)
+            //    {
+
+            //        if (motaDecouvrir[i] == lettre)
+            //        {
+            //            tabChar[i] = lettre;
+            //            resultat = true;
+            //        }
+
+
+
+            //        //if (resultat == true)
+            //        //{
+            //        //    motaDecouvrir = tabChar.ToString();
+            //        //}
+            //        //else
+            //        //{
+            //        //    //nbrEssais--;
+            //        //}
+
+            //    }
+            //    return resultat;
+            //}
+
+            //Console.WriteLine(trouverLaLettre('i', "Aristocrate"));
+
+            static bool trouverLaLettre(char lettre, string mot)
             {
-                if (MotADeviner[i] == lettre)
-                {
-                    tableau[i] = MotADeviner[i];
-                }
-                else
-                {
-                    tableau[i] = '_';
-                }
 
+
+                char[] charArray = mot.ToCharArray();
+                bool valeur = false;
+
+                foreach (char c in charArray)
+                {
+                    if (lettre == c)
+                    {
+                        return true;
+                    }
+
+                }
+                return false;
             }
-            string NlleChaine = new string(tableau);
-            return NlleChaine;
-            
-
         }
 
-        public static string GetMotInitialUnderScore(string MotInitial)
-        {
-            int longueur = MotInitial.Length;
-            char[] tab = new char[longueur];
-            for (int i = 0; i < longueur; i++)
-            {
-                tab[i] = '_';
-            }
-            string ChaineUnderScore = new string(tab);
-            return ChaineUnderScore;
-        }
+
+       
+
+
+        //for (int i = 0; i < mot.Length; i++)
+        //{
+        //    bool valeur = false;
+
+        //    if (match != mot[i])
+        //    {
+        //        nbreEssaisRestant--;
+
+        //    }
+
+        //}
+
+        //Console.WriteLine(RemplacerparTirer("Bob"));
+        //static string RemplacerparTirer(string mot)
+        //{
+        //    string resultat = "";
+        //    char[] charArray = mot.ToCharArray();
+
+        //    foreach (char c in charArray)
+        //    {
+        //        resultat += "_ ";
+        //    }
+
+        //    return resultat;
+        //}
+
+
+
     }
+
+
+
 }
