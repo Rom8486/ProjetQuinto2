@@ -20,7 +20,9 @@ namespace ProjetQuinto
     {
         Mot mot = new Mot();
         Joueur joueur = new Joueur();
-        
+        int nbrManches = 0;
+        Timer timer = new Timer();
+
         #region Singleton
         private static Interface_jeux _instance;
         public static Interface_jeux GetInstance()
@@ -56,7 +58,7 @@ namespace ProjetQuinto
 
         public void CreationTimer()
         {
-            Timer timer = new Timer();
+            
             timer.Interval = 1000;
             timer.Enabled = true;
             timer.Tick += timer_Tick;
@@ -110,7 +112,7 @@ namespace ProjetQuinto
                     lbNbreEssais.Enabled = true;
                     tbNbrEssais.Enabled = true;
                     tbMotADeviner.Enabled = true;
-                    pnlClavier.Enabled = false;
+                    pnlClavier.Enabled = true;
                     break;
                 case Contextes.GameStarted:
                     gbDifficulté.Enabled = false;
@@ -121,9 +123,18 @@ namespace ProjetQuinto
                     lbNbreEssais.Enabled = true;
                     tbNbrEssais.Enabled = true;
                     pnlClavier.Enabled = true;
+
                     break;
                 case Contextes.Between2Games:
-                    GestionnaireContextes(Contextes.Initial); //Redondant mais pour se souvenir que Between2Games est le même contexte que Contextes.Initial
+                    gbDifficulté.Enabled = false;
+                    gbInformations.Enabled = true;
+                    btnStart.Enabled = true;
+                    lbTimer.Enabled = true;
+                    tbTimer.Enabled = true;
+                    lbNbreEssais.Enabled = true;
+                    tbNbrEssais.Enabled = true;
+                    pnlClavier.Enabled = true;
+                    textBox2.Text = nbrManches.ToString();
                     break;
                 default:
                     break;
@@ -151,9 +162,18 @@ namespace ProjetQuinto
             }
             if (!tbMotADeviner.Text.Contains('*'))
             {
+
+                nbrManches++;
+                textBox2.Text = nbrManches.ToString();
+                timer.Stop();
                 MessageBox.Show("Gagné!!");
-                joueur.NbManchesRemportees++;
-                textBox2.Text = joueur.NbManchesRemportees.ToString();
+                bouton.Enabled = true;
+                GestionnaireContextes(Contextes.Between2Games);
+                tbMotADeviner.Clear();
+                tbNbrEssais.Clear();
+                tbTimer.Clear();
+                tbNbrEssais.Clear();
+
             }
             if (MauvauseProposition==false)
             {
@@ -166,63 +186,63 @@ namespace ProjetQuinto
                 if (dia==DialogResult.Yes)
                 {
                     GestionnaireContextes(Contextes.Initial);
+                    tbMotADeviner.Clear();
+                    textBox2.Clear();
+                    tbTimer.Clear();
+                    tbNbrEssais.Clear();
+                    timer.Stop();
+
                 }
                 else if (dia == DialogResult.No)
                 {
                     this.Close();
                 }
 
-
             }
 
-            
-          
-
-            bouton.Enabled = false;
-           
+            //bouton.Enabled = false;
         }
 
-        static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
-        {
-            int nbrEssais;
-            bool resultat;
-            char[] tabChar = motaDecouvrir.ToCharArray();
+        //static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
+        //{
+        //    int nbrEssais;
+        //    bool resultat;
+        //    char[] tabChar = motaDecouvrir.ToCharArray();
 
-            resultat = false;
+        //    resultat = false;
 
-            for (int i = 0; i < motEnCoursDecouverte.Length; i++)
-            {
-                if (motEnCoursDecouverte[i] == lettre)
-                {
-                    return true;
-                    tabChar[i] = lettre;
+        //    for (int i = 0; i < motEnCoursDecouverte.Length; i++)
+        //    {
+        //        if (motEnCoursDecouverte[i] == lettre)
+        //        {
+        //            return true;
+        //            tabChar[i] = lettre;
 
-                    if (resultat == true)
-                    {
-                        motaDecouvrir = tabChar.ToString();
-                    }
-                    else
-                    {
-                        nbrEssais--;
-                    }
-                }
-            }
-            return resultat;
-        }
+        //            if (resultat == true)
+        //            {
+        //                motaDecouvrir = tabChar.ToString();
+        //            }
+        //            else
+        //            {
+        //                nbrEssais--;
+        //            }
+        //        }
+        //    }
+        //    return resultat;
+        //}
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            CreationTimer();
+            //CreationTimer();
+            textBox2.Text = nbrManches.ToString();
             GestionnaireContextes(Contextes.GameStarted);
             btnStart.Enabled = false;
 
             joueur.NbEssaiRestant = 7;
             tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
-            mot.MotInitial = "TOTO";
+            mot.MotInitial = "TYPE";
             
             tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
-
-
 
         }
         #endregion
@@ -252,6 +272,7 @@ namespace ProjetQuinto
             }
         }
 
+
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             if (radioButton2.Checked)
@@ -279,22 +300,15 @@ namespace ProjetQuinto
                 //}
             }
         }
-       
-        
 
-        #endregion
+  
+    #endregion
 
-        private void tbMotADeviner_TextChanged(object sender, EventArgs e)
+    private void tbMotADeviner_TextChanged(object sender, EventArgs e)
         {
             //RemplacerparTirer();
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            int manche = 1;
-            textBox2.Text = manche.ToString();
-
-        }
 
     }
 }

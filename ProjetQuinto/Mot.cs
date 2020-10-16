@@ -22,6 +22,8 @@ namespace ProjetQuinto
         {
         }
 
+
+
         public string MettreTirets(string mot)
         {
             string resultat = "";
