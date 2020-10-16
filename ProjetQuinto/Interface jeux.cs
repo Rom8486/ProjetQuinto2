@@ -223,6 +223,7 @@ namespace ProjetQuinto
             tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
 
 
+
         }
         #endregion
 
@@ -246,7 +247,7 @@ namespace ProjetQuinto
                 //GestionDifficulte(NiveauDifficulte.facile);
                 int manche = 3;
                 textBox3.Text = manche.ToString();
-
+                
             }
         }
 
@@ -270,9 +271,16 @@ namespace ProjetQuinto
                 //Joueur.GestionDifficulte(NiveauDifficulte.expert);
                 int manche = 5;
                 textBox3.Text = manche.ToString();
-
+                //Mots essai = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+                //foreach (var item in essai)
+                //{
+                //    tbMotADeviner.Text += $"{item.Texte} ";
+                //}
             }
         }
+       
+        
+
         #endregion
 
         private void tbMotADeviner_TextChanged(object sender, EventArgs e)

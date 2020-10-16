@@ -42,6 +42,7 @@ namespace TestConsole
                         tabChar[i] = lettre;
                     }
  
+
                 }
                 if (resultat == true)
                 {

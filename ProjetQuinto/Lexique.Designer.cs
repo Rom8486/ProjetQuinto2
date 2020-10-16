@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.tbMot = new System.Windows.Forms.TextBox();
             this.btnValider = new System.Windows.Forms.Button();
+            this.epLexique = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lbMots = new System.Windows.Forms.ListBox();
+            ((System.ComponentModel.ISupportInitialize)(this.epLexique)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -59,18 +63,34 @@
             this.btnValider.UseVisualStyleBackColor = true;
             this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
+            // epLexique
+            // 
+            this.epLexique.ContainerControl = this;
+            // 
+            // lbMots
+            // 
+            this.lbMots.FormattingEnabled = true;
+            this.lbMots.Location = new System.Drawing.Point(608, 91);
+            this.lbMots.Name = "lbMots";
+            this.lbMots.Size = new System.Drawing.Size(120, 212);
+            this.lbMots.TabIndex = 3;
+            // 
             // Lexique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lbMots);
             this.Controls.Add(this.btnValider);
             this.Controls.Add(this.tbMot);
             this.Controls.Add(this.label1);
             this.Name = "Lexique";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lexique";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Lexique_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lexique_FormClosed);
+            this.Load += new System.EventHandler(this.Lexique_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.epLexique)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -81,5 +101,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbMot;
         private System.Windows.Forms.Button btnValider;
+        private System.Windows.Forms.ErrorProvider epLexique;
+        private System.Windows.Forms.ListBox lbMots;
     }
 }

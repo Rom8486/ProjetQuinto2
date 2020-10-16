@@ -28,6 +28,7 @@ namespace ProjetQuinto
             Interface_jeux interface_jeux = Interface_jeux.GetInstance();
             interface_jeux.MdiParent = this;
             interface_jeux.Show();
+            
         }
 
         private void lexiqueToolStripMenuItem_Click(object sender, EventArgs e)
@@ -126,6 +127,8 @@ namespace ProjetQuinto
         {
             Close();
         }
+
+        
     }
 
 }
