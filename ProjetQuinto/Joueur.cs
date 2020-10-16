@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace ProjetQuinto
 {
-    class Joueur
+    public class Joueur
     {
 
         private int _nbPointsParManche;
@@ -15,13 +15,14 @@ namespace ProjetQuinto
         private int _nbManchesRemportees;
         private int _nbPropositions;
         private int _nbErreurs;
+        private int _nbEssaiRestant;
         string _alias;
 
 
         #region Get/Set
         public int NbPoints 
-        { get { return _nbPointsParManche; }
-            set { _nbPointsParManche = value; }
+        { get { return NbPointsParManche; }
+            set { NbPointsParManche = value; }
         }
 
         public int NbManchesRemportees
@@ -47,6 +48,9 @@ namespace ProjetQuinto
             get { return _alias; }
             set { _alias = value; }
         }
+
+        public int NbPointsParManche { get => _nbPointsParManche; set => _nbPointsParManche = value; }
+        public int NbEssaiRestant { get => _nbEssaiRestant; set => _nbEssaiRestant = value; }
 
         #endregion
 
@@ -106,7 +110,7 @@ namespace ProjetQuinto
             DialogResult Dia = MessageBox.Show("Bravo vous avez gagné!!\n :)))\n Voulez vous rejouer?", "Gagné", MessageBoxButtons.YesNo);
             if (Dia == DialogResult.Yes)
             {
-                //GestionnaireContextes(Contextes.Initial);
+                //Interface_jeux.GestionnaireContextes(Contextes.Initial);
             }
             else
             {

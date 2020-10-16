@@ -104,6 +104,7 @@ namespace ProjetQuinto
             }
            
             BackColor = MdiMère.DefaultBackColor; // Ne marche pas; à revoir.
+           
 
         }
         #endregion
