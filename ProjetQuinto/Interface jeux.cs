@@ -126,11 +126,8 @@ namespace ProjetQuinto
             CreationTimer();
             GestionnaireContextes(Contextes.GameStarted);
             btnStart.Enabled = false;
-            Mots essai = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsJson.json", typeof(Mots));
-            foreach (var item in essai)
-            {
-                tbMotADeviner.Text += $"{item.Texte} ";
-            }
+            //DeserializeAll();
+
 
         }
         #endregion
@@ -155,6 +152,7 @@ namespace ProjetQuinto
                 //GestionDifficulte(NiveauDifficulte.facile);
                 int manche = 3;
                 textBox3.Text = manche.ToString();
+                
             }
         }
 
@@ -166,6 +164,11 @@ namespace ProjetQuinto
                //GestionDifficulte(NiveauDifficulte.difficile);
                 int manche = 4;
                textBox3.Text = manche.ToString();
+                //Mots essai = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
+                //foreach (var item in essai)
+                //{
+                //    tbMotADeviner.Text += $"{item.Texte} ";
+                //}
             }
         }
 
@@ -177,8 +180,16 @@ namespace ProjetQuinto
                 //GestionDifficulte(NiveauDifficulte.expert);
                 int manche = 5;
                 textBox3.Text = manche.ToString();
+                //Mots essai = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+                //foreach (var item in essai)
+                //{
+                //    tbMotADeviner.Text += $"{item.Texte} ";
+                //}
             }
         }
+       
+        
+
         #endregion
 
     }
