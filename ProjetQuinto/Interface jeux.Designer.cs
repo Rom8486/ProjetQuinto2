@@ -645,7 +645,7 @@
             this.tbTimer.Size = new System.Drawing.Size(28, 26);
             this.tbTimer.TabIndex = 0;
             this.tbTimer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbTimer.TextChanged += new System.EventHandler(this.tbTimer_TextChanged);
+            //this.tbTimer.TextChanged += new System.EventHandler(this.tbTimer_TextChanged);
             // 
             // lbNbreEssais
             // 
