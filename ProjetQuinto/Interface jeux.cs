@@ -155,6 +155,14 @@ namespace ProjetQuinto
             //{
             //    tbMotADeviner.Text += $"{item.Texte} ";
             //}
+
+            //tbMotADeviner.Text = "LIMOGES";
+            //int longueur = tbMotADeviner.Text.Length;
+            //for (int i = 0; i < longueur; i++)
+            //{
+            //    resultat += "_ ";
+            //}
+
         }
         #endregion
 
