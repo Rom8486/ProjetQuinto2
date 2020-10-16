@@ -10,7 +10,7 @@ using System.Windows.Forms;
 //using System.Threading;
 using System.Diagnostics;
 using System.IO;
-//using Newtonsoft.Json;
+using Newtonsoft.Json;
 //using System.Threading;
 
 
@@ -36,10 +36,6 @@ namespace ProjetQuinto
         #endregion
 
         int duree = 0;
-        /// <summary>
-        /// Fonctions
-        /// </summary>
-        /// 
 
         enum Contextes
         {
@@ -174,6 +170,8 @@ namespace ProjetQuinto
                 //GestionDifficulte(NiveauDifficulte.facile);
                 int manche = 3;
                 textBox3.Text = manche.ToString();
+                int essais = 8;
+                tbNbrEssais.Text = essais.ToString();
             }
         }
 
@@ -184,7 +182,9 @@ namespace ProjetQuinto
                GestionnaireContextes(Contextes.StartGame);
                //GestionDifficulte(NiveauDifficulte.difficile);
                 int manche = 4;
-               textBox3.Text = manche.ToString();
+                textBox3.Text = manche.ToString();
+                int essais = 7;
+                tbNbrEssais.Text = essais.ToString();
             }
         }
 
@@ -196,9 +196,15 @@ namespace ProjetQuinto
                 //GestionDifficulte(NiveauDifficulte.expert);
                 int manche = 5;
                 textBox3.Text = manche.ToString();
+                int essais = 6;
+                tbNbrEssais.Text = essais.ToString();
             }
         }
         #endregion
 
+        private void tbNbrEssais_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

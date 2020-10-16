@@ -35,13 +35,19 @@ namespace ProjetQuinto
                 Console.WriteLine(charArray[i]);
             }
 
-
             // Il faut décompoer la string de mots en lettres individuelles
             // Peur être mettre en paramètres de la texte box --> PasswordChar = true;
             // Pour chaque lettre individuelle qui correspond à la touche que l'on a tapé, on la découvre du mot indice.
             // For each caractère dans la texte box, mettre une barre en-dessous du caractère.
             // Pour chaque mot qui se trouve dans la texte box, chque lettre de chaque mot  est remplacée par un "underscore"
             // Dès que l'on trouve la ou les bonne(s) letttre(s) du mot recherché, on la dévoile et supprime le "underscore"
+        }
+
+        static void NbrEssaisRestant()
+        {
+            //NbrEssaisRestant = le nombre d'essais en début de partie - le nombre d'erreur
+
+
         }
     }
 }

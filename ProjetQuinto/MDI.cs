@@ -16,7 +16,9 @@ namespace ProjetQuinto
 
         public MdiMère()
         {
+            
             InitializeComponent();
+            
             btnQuitter.Click += btnQuitter_Click;
         }
 
@@ -101,6 +103,7 @@ namespace ProjetQuinto
             }
            
             BackColor = MdiMère.DefaultBackColor; // Ne marche pas; à revoir.
+           
 
         }
         #endregion
