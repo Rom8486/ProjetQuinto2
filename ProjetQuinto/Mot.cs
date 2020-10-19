@@ -30,6 +30,8 @@ namespace ProjetQuinto
             return false;
         }
 
+
+
         public string MettreTirets(string mot)
         {
             string resultat = "";

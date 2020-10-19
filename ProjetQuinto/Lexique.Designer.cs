@@ -87,9 +87,8 @@
             this.Name = "Lexique";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lexique";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Lexique_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lexique_FormClosed);
-//            ((System.ComponentModel.ISupportInitialize)(this.epLexique)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epLexique)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
