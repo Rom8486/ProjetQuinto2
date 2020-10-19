@@ -54,15 +54,15 @@ namespace ProjetQuinto
 
             Mot mot = new Mot();
 
-            if (Mot.mot(tbPseudo.Text))
-            {
+            //if (Mot.mot(tbPseudo.Text))
+            //{
 
-                pseudo.Texte = tbPseudo.Text;
-                pseudo.Add(mot);
-                tbPseudo.Clear();
+            //    pseudo.Texte = tbPseudo.Text;
+            //    pseudo.Add(mot);
+            //    tbPseudo.Clear();
 
-            }
-            Serialisation.SaveJson(@"C:\Windows\Temp\Toplayers.json", pseudo);
+            //}
+            //Serialisation.SaveJson(@"C:\Windows\Temp\Toplayers.json", pseudo);
 
         }
 
@@ -92,27 +92,27 @@ namespace ProjetQuinto
         #region Méthodes Vérification
         private void tbPseudo_Validating(object sender, CancelEventArgs e)
         {
-            Mot mot = new Mot();
+            //Mot mot = new Mot();
 
-            mot.Texte = tbPseudo.Text;
-            if (!Mot.mot(tbPseudo.Text))
-            {
-                ep.SetError(btnValider, "Pseudo invalide");
-            }
-            else
-            {
-                ep.SetError(btnValider, string.Empty);
-            }
+            //mot.Texte = tbPseudo.Text;
+            //if (!Mot.mot(tbPseudo.Text))
+            //{
+            //    ep.SetError(btnValider, "Pseudo invalide");
+            //}
+            //else
+            //{
+            //    ep.SetError(btnValider, string.Empty);
+            //}
         }
 
         private bool IsPseudoValid()
         {
             bool valid = true;
 
-            if (tbPseudo.Text = string.Empty)
-            {
+            //if (tbPseudo.Text = string.Empty)
+            //{
 
-            }
+            //}
 
             return valid;
         }
