@@ -11,7 +11,7 @@ namespace ProjetQuinto
         private string _MotEncours;
         private int _lettresDecouvetes;
         private int _motinitialeunderscore;
-
+        
 
         public string MotInitial { get => _MotInitial; set => _MotInitial = value; }
         public string MotEncours { get => _MotEncours; set => _MotEncours = value; }
@@ -21,6 +21,16 @@ namespace ProjetQuinto
         public Mot()
         {
         }
+        public bool IsMotValideFacile(string mot)
+        {
+            return false;
+        }
+        public bool IsMotValideDifficile(string mot)
+        {
+            return false;
+        }
+
+
 
         public string MettreTirets(string mot)
         {

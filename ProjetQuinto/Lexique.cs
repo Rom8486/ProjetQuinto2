@@ -49,18 +49,18 @@ namespace ProjetQuinto
             _instance = null;
             SerializeAll();
         }
-        private void btnValider_Click(object sender, EventArgs e)
-        {
-            Mot mot = new Mot();
+        //private void btnValider_Click(object sender, EventArgs e)
+        //{
+        //    Mot mot = new Mot();
            
-            if (Mot.IsMotValideFacile(tbMot.Text))
-            {
+        //    if (mot.IsMotValideFacile(tbMot.Text))
+        //    {
 
                 mot.MotInitial = tbMot.Text;
                 motsFacile.Add(mot);
                 tbMot.Clear();
                
-            }
+        //    }
             
             else if (Mot.IsMotValideDifficile(tbMot.Text))
             {
@@ -68,7 +68,7 @@ namespace ProjetQuinto
                 motsDifficile.Add(mot);
                 tbMot.Clear();
               
-            }
+        //    }
            
             
            else if (Mot.IsMotValideExpert(tbMot.Text))
@@ -77,20 +77,18 @@ namespace ProjetQuinto
                 motsExpert.Add(mot);
                 tbMot.Clear();
            
-            }
-            else
-            {
-                MessageBox.Show("Mot entré dans le lexique incorrect", "Erreur!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("Mot entré dans le lexique incorrect", "Erreur!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
 
 
 
-        }
+        //}
 
         //private void tbMot_Validating(object sender, CancelEventArgs e)
         //{
-           
-
         //    mot.Texte = tbMot.Text;
         //    if (!Mot.IsMotValideFacile(tbMot.Text))
         //    {
@@ -100,11 +98,10 @@ namespace ProjetQuinto
         //    {
         //        epLexique.SetError(btnValider, string.Empty);
         //    }
-                    
+
         //}
         public void SerializeAll()
         {
-
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsFacileJson.json", motsFacile);
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsDifficileJson.json", motsDifficile);
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsExpertJson.json", motsExpert);

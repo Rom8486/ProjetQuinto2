@@ -19,7 +19,6 @@ namespace ProjetQuinto
         {
             
             InitializeComponent();
-            
             btnQuitter.Click += btnQuitter_Click;
         }
 
@@ -103,10 +102,7 @@ namespace ProjetQuinto
                 btnFondEcranCasino.Checked = false;
                 btnFondEcranQuinto.Checked = false;
             }
-           
-            BackColor = MdiMère.DefaultBackColor; // Ne marche pas; à revoir.
-           
-
+            this.BackgroundImage = null;
         }
         #endregion
 
