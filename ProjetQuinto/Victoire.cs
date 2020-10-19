@@ -90,7 +90,7 @@ namespace ProjetQuinto
         #region Méthodes Vérification
         private void tbPseudo_Validating(object sender, CancelEventArgs e)
         {
-            Mot mot = new Mot();
+            //Mot mot = new Mot();
 
             mot.MotInitial = tbPseudo.Text;
             //if (!IsPseudoValid(tbPseudo.Text))
