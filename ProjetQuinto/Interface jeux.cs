@@ -172,7 +172,7 @@ namespace ProjetQuinto
                 }
 
             }
-            if (!tbMotADeviner.Text.Contains('*') /*&& textBox2.Text.ToString() != textBox3.Text.ToString()*/)
+            if (!tbMotADeviner.Text.Contains('*'))
             {
 
                 MessageBox.Show("Gagné!!");
