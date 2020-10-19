@@ -46,7 +46,7 @@
             this.btnValider.TabIndex = 0;
             this.btnValider.Text = "Valider";
             this.btnValider.UseVisualStyleBackColor = true;
-            //this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
             // label1
             // 
@@ -74,6 +74,7 @@
             this.tbPseudo.Name = "tbPseudo";
             this.tbPseudo.Size = new System.Drawing.Size(139, 20);
             this.tbPseudo.TabIndex = 3;
+            //this.tbPseudo.TextChanged += new System.EventHandler(this.tbPseudo_TextChanged);
             this.tbPseudo.Validating += new System.ComponentModel.CancelEventHandler(this.tbPseudo_Validating);
             // 
             // tbScore

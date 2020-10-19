@@ -22,7 +22,7 @@ namespace ProjetQuinto
         Mot mot = new Mot();
         Joueur joueur = new Joueur();
         Timer timer = new Timer();
-        int Duree = 0;
+        int duree = 0;
 
 
         //Hahstset d'essai pour charger mot en debut de manche
@@ -45,7 +45,7 @@ namespace ProjetQuinto
         }
         #endregion
 
-        int duree = 0;
+        
 
         enum Contextes
         {
@@ -73,22 +73,22 @@ namespace ProjetQuinto
             timer.Start();
 
         }
-        public DateTime TempsDebut()
-        {
-            DateTime TpsDebut = DateTime.Now;
-            return TpsDebut;
-        }
-        public DateTime TempsFin()
-        {
-            DateTime TpsFin = DateTime.Now;
-            return TpsFin;
-        }
-        public int CalculerTemps(DateTime tpsDebut, DateTime tpsFin)
-        {
-            TimeSpan span = (tpsFin - tpsDebut);
-            int resultat = (int)span.TotalSeconds;
-            return resultat;
-        }
+        //public DateTime TempsDebut()
+        //{
+        //    DateTime TpsDebut = DateTime.Now;
+        //    return TpsDebut;
+        //}
+        //public DateTime TempsFin()
+        //{
+        //    DateTime TpsFin = DateTime.Now;
+        //    return TpsFin;
+        //}
+        //public int CalculerTemps(DateTime tpsDebut, DateTime tpsFin)
+        //{
+        //    TimeSpan span = (tpsFin - tpsDebut);
+        //    int resultat = (int)span.TotalSeconds;
+        //    return resultat;
+        //}
         private void timer_Tick(object sender, EventArgs e)
         {
             duree++;
@@ -186,6 +186,8 @@ namespace ProjetQuinto
             if (!tbMotADeviner.Text.Contains('*'))
             {
                 timer.Stop();
+                timer.Dispose();
+                duree = 0;
                 MessageBox.Show("Gagné!!");
                 joueur.NbManchesRemportees++;
                 
@@ -196,8 +198,9 @@ namespace ProjetQuinto
                 GestionnaireContextes(Contextes.Between2Games);
                 tbMotADeviner.Clear();
                 tbNbrEssais.Clear();
-                tbTimer.Clear();
+                tbTimer.Text = "0";
                 tbNbrEssais.Clear();
+                
                 
             }
                 //if (joueur.NbManchesRemportees==joueur.NbManche)
@@ -250,7 +253,11 @@ namespace ProjetQuinto
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
-            CreationTimer();
+            if (joueur.NbManchesRemportees==0)
+            {
+                CreationTimer();
+            }
+            timer.Start();
             textBox2.Text = joueur.NbManchesRemportees.ToString();
             GestionnaireContextes(Contextes.GameStarted);
             //DateTime TpsDebut = TempsDebut();

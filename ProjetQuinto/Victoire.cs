@@ -14,8 +14,8 @@ namespace ProjetQuinto
 {
     public partial class interface_Victoire : Form
     {
-        Joueur joueur;
-
+        Joueur joueur = new Joueur();
+        HashsetDeJoueur ListeJoueur = new HashsetDeJoueur();
 
 
         Mots pseudo = new Mots();
@@ -92,7 +92,7 @@ namespace ProjetQuinto
         {
             //Mot mot = new Mot();
 
-            mot.MotInitial = tbPseudo.Text;
+            //mot.MotInitial = tbPseudo.Text;
             //if (!IsPseudoValid(tbPseudo.Text))
             //{
             //    ep.SetError(btnValider, "Pseudo invalide");
@@ -103,7 +103,20 @@ namespace ProjetQuinto
             //}
         }
 
-      
+
         #endregion
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            
+            
+            tbPseudo.Text = joueur.Pseudo;
+            ListeJoueur.Add(joueur);
+            tbPseudo.Clear();
+            Serialisation.SaveJson(@"C:\Users\CDA\Desktop\Meilleurs_scores",ListeJoueur);
+
+        }
+
+       
     }
 }
