@@ -44,48 +44,47 @@ namespace ProjetQuinto
         {
             _instance = null;
         }
-        //private void btnValider_Click(object sender, EventArgs e)
-        //{
-        //    Mot mot = new Mot();
-           
-        //    if (Mot.IsMotValideFacile(tbMot.Text))
-        //    {
 
-        //        mot.Texte = tbMot.Text;
-        //        motsFacile.Add(mot);
-        //        tbMot.Clear();
-               
-        //    }
-            
-        //    else if (Mot.IsMotValideDifficile(tbMot.Text))
-        //    {
-        //        mot.Texte = tbMot.Text;
-        //        motsDifficile.Add(mot);
-        //        tbMot.Clear();
-              
-        //    }
-           
-            
-        //   else if (Mot.IsMotValideExpert(tbMot.Text))
-        //    {
-        //        mot.Texte = tbMot.Text;
-        //        motsExpert.Add(mot);
-        //        tbMot.Clear();
-           
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Mot entré dans le lexique incorrect", "Erreur!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //    }
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            Mot mot = new Mot();
+
+            //if (Mot.IsMotValideFacile(tbMot.Text))
+            //{
+
+            //    mot.Texte = tbMot.Text;
+            //    motsFacile.Add(mot);
+            //    tbMot.Clear();
+
+            //}
+
+            //else if (Mot.IsMotValideDifficile(tbMot.Text))
+            //{
+            //    mot.Texte = tbMot.Text;
+            //    motsDifficile.Add(mot);
+            //    tbMot.Clear();
+
+            //}
 
 
+            //else if (Mot.IsMotValideExpert(tbMot.Text))
+            //{
+            //    mot.Texte = tbMot.Text;
+            //    motsExpert.Add(mot);
+            //    tbMot.Clear();
 
-        //}
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Mot entré dans le lexique incorrect", "Erreur!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //}
+
+
+
+        }
 
         //private void tbMot_Validating(object sender, CancelEventArgs e)
         //{
-           
-
         //    mot.Texte = tbMot.Text;
         //    if (!Mot.IsMotValideFacile(tbMot.Text))
         //    {
@@ -95,20 +94,19 @@ namespace ProjetQuinto
         //    {
         //        epLexique.SetError(btnValider, string.Empty);
         //    }
-                    
+
         //}
         public void SerializeAll()
         {
-
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsFacileJson.json", motsFacile);
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsDifficileJson.json", motsDifficile);
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsExpertJson.json", motsExpert);
         }
 
-        //private void Lexique_FormClosing(object sender, FormClosingEventArgs e)
-        //{
-        //    SerializeAll();
-        //}
+        private void Lexique_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SerializeAll();
+        }
 
         //private void Lexique_Load(object sender, EventArgs e)
         //{
@@ -117,7 +115,7 @@ namespace ProjetQuinto
         //    {
         //        lbMots.Items.Add(item.Texte);
         //    }
-        //    motsDifficile=(Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
+        //    motsDifficile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
         //    foreach (var item in motsDifficile)
         //    {
         //        lbMots.Items.Add(item.Texte);
@@ -128,18 +126,19 @@ namespace ProjetQuinto
         //        lbMots.Items.Add(item.Texte);
         //    }
         //}
+
     }
-    //public void DeserializeAll()
-    //{
+        //public void DeserializeAll()
+         //{
 
-    //    Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
-    //    foreach (var item in mots)
-    //    {
+         //    Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
+         //    foreach (var item in mots)
+         //    {
           
-    //    }
-    //    //Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
-    //    //Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+         //    }
+         //    //Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
+         //    //Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
 
-    //}
+          //}
 }
 

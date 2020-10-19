@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
+using System.Runtime.CompilerServices;
 //using System.Threading;
 
 
@@ -22,6 +23,7 @@ namespace ProjetQuinto
         Joueur joueur = new Joueur();
         int nbrManches = 0;
         Timer timer = new Timer();
+
 
         #region Singleton
         private static Interface_jeux _instance;
@@ -40,7 +42,7 @@ namespace ProjetQuinto
         #endregion
 
         int duree = 0;
-        
+
         enum Contextes
         {
             Initial = 0,
@@ -53,20 +55,20 @@ namespace ProjetQuinto
         {
             InitializeComponent();
             GestionnaireContextes(Contextes.Initial);
-            
+
         }
+
+        #region Timer
 
         public void CreationTimer()
         {
-            
+
             timer.Interval = 1000;
             timer.Enabled = true;
             timer.Tick += timer_Tick;
             timer.Start();
-            //Penser à stopper timer à la fin de la manche
-        }
-        
 
+        }
         public DateTime TempsDebut()
         {
             DateTime TpsDebut = DateTime.Now;
@@ -83,12 +85,17 @@ namespace ProjetQuinto
             int resultat = (int)span.TotalSeconds;
             return resultat;
         }
-
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            duree++;
+            tbTimer.Text = duree.ToString();
+        }
+        #endregion
 
         #region Gestionnaire Contextes
 
         void GestionnaireContextes(Contextes contexte)
-        { 
+        {
             switch (contexte)
             {
                 case Contextes.Initial:
@@ -113,6 +120,8 @@ namespace ProjetQuinto
                     tbNbrEssais.Enabled = true;
                     tbMotADeviner.Enabled = true;
                     pnlClavier.Enabled = true;
+                    textBox2.Text = "0";
+                    //textBox2.Clear();
                     break;
                 case Contextes.GameStarted:
                     gbDifficulté.Enabled = false;
@@ -123,7 +132,7 @@ namespace ProjetQuinto
                     lbNbreEssais.Enabled = true;
                     tbNbrEssais.Enabled = true;
                     pnlClavier.Enabled = true;
-
+                    ReinitialiserClavier();
                     break;
                 case Contextes.Between2Games:
                     gbDifficulté.Enabled = false;
@@ -135,6 +144,8 @@ namespace ProjetQuinto
                     tbNbrEssais.Enabled = true;
                     pnlClavier.Enabled = true;
                     textBox2.Text = nbrManches.ToString();
+                    pnlClavier.Enabled = false;
+                    ReinitialiserClavier();
                     break;
                 default:
                     break;
@@ -143,47 +154,47 @@ namespace ProjetQuinto
         #endregion
 
         #region Evenements
-        private void btnA_Click(object sender, EventArgs e)
+
+        private void bouton_Click(object sender, EventArgs e)
         {
-            Button bouton = sender as Button;
-            char lettre =bouton.Text[0];
+            Button button = sender as Button;
+            char lettre = button.Text[0];
             bool MauvauseProposition = false;
 
             for (int i = 0; i < mot.MotInitial.Length; i++)
             {
-                
+
                 char[] tab = mot.MotInitial.ToCharArray();
-                if (tab[i]== lettre)
+                if (tab[i] == lettre)
                 {
-                    tbMotADeviner.Text= tbMotADeviner.Text.Remove(i, 1).Insert(i, lettre.ToString());
+                    tbMotADeviner.Text = tbMotADeviner.Text.Remove(i, 1).Insert(i, lettre.ToString());
                     MauvauseProposition = true;
                 }
-               
+
             }
-            if (!tbMotADeviner.Text.Contains('*'))
+            if (!tbMotADeviner.Text.Contains('*') /*&& textBox2.Text.ToString() != textBox3.Text.ToString()*/)
             {
 
-                nbrManches++;
-                textBox2.Text = nbrManches.ToString();
-                timer.Stop();
                 MessageBox.Show("Gagné!!");
-                bouton.Enabled = true;
+                nbrManches++;
+                timer.Stop();
+                textBox2.Text = nbrManches.ToString();
                 GestionnaireContextes(Contextes.Between2Games);
                 tbMotADeviner.Clear();
                 tbNbrEssais.Clear();
                 tbTimer.Clear();
                 tbNbrEssais.Clear();
-
             }
-            if (MauvauseProposition==false)
+            if (MauvauseProposition == false)
             {
                 joueur.NbEssaiRestant--;
             }
+
             tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
-            if (joueur.NbEssaiRestant==0)
+            if (joueur.NbEssaiRestant == 0)
             {
-               DialogResult dia= MessageBox.Show("Vous avez perdu! Voulez vous rejouer?", "Perdu!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                if (dia==DialogResult.Yes)
+                DialogResult dia = MessageBox.Show("Vous avez perdu! Voulez vous rejouer?", "Perdu!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                if (dia == DialogResult.Yes)
                 {
                     GestionnaireContextes(Contextes.Initial);
                     tbMotADeviner.Clear();
@@ -191,17 +202,116 @@ namespace ProjetQuinto
                     tbTimer.Clear();
                     tbNbrEssais.Clear();
                     timer.Stop();
-
                 }
                 else if (dia == DialogResult.No)
                 {
                     this.Close();
                 }
+            }
+            button.Enabled = false;
+
+            if (textBox2.Text.ToString() == textBox3.Text.ToString())
+            {
+                textBox2.Text = "0";
+                interface_Victoire victoire = interface_Victoire.GetInstance();
+                victoire.Show();
+
+                // Si Formulaire trop compliqué, on peut se contenter d'une MessageBox
+                //DialogResult resultat = MessageBox.Show("Félicitations!! Vous avez remporté la partie.\n" +
+                //"Souhaitez-vous commencer une nouvelle partie?", "VICTOIRE",
+                //MessageBoxButtons.YesNo);
+
+                //if (resultat == DialogResult.Yes)
+                //{
+                //    textBox2.Text = string.Empty;
+                //    GestionnaireContextes(Contextes.Initial);
+                //}
+                //else
+                //{
+                //    this.Close();
+                //}
+            }
+        }
+        private void btnStart_Click(object sender, EventArgs e)
+        {
+            //CreationTimer();
+            textBox2.Text = nbrManches.ToString();
+            GestionnaireContextes(Contextes.GameStarted);
+            btnStart.Enabled = false;
+
+            joueur.NbEssaiRestant = 7;
+            tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
+            mot.MotInitial = "TYPE";
+
+            tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
+
+
+        }
+        #endregion
+
+        #region Méthode Réinitilisation du clavier
+        private void ReinitialiserClavier()
+        {
+            foreach (Control button in pnlClavier.Controls)
+            {
+                button.Enabled = true;
+            }
+        }
+        #endregion
+
+        #region Thème
+        private void Interface_jeux_Load(object sender, EventArgs e)
+        {
+            this.BackgroundImage = Parent.BackgroundImage;
+        }
+        #endregion
+
+        #region Radio Buttons
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton1.Checked)
+            {
+                GestionnaireContextes(Contextes.StartGame);
+                //GestionDifficulte(NiveauDifficulte.facile);
+                int manche = 3;
+                textBox3.Text = manche.ToString();
 
             }
-
-            //bouton.Enabled = false;
         }
+
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton2.Checked)
+            {
+                GestionnaireContextes(Contextes.StartGame);
+                //GestionDifficulte(NiveauDifficulte.difficile);
+                int manche = 4;
+                textBox3.Text = manche.ToString();
+
+            }
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButton3.Checked)
+            {
+                GestionnaireContextes(Contextes.StartGame);
+                //Joueur.GestionDifficulte(NiveauDifficulte.expert);
+                int manche = 5;
+                textBox3.Text = manche.ToString();
+                //Mots essai = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+                //foreach (var item in essai)
+                //{
+                //    tbMotADeviner.Text += $"{item.Texte} ";
+                //}
+            }
+        }
+
+
+        #endregion
+
+        #region Brouillon
 
         //static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
         //{
@@ -230,85 +340,65 @@ namespace ProjetQuinto
         //    }
         //    return resultat;
         //}
+        //private void btnA_Click(object sender, EventArgs e)
+        //{
+        //    Button bouton = sender as Button;
+        //    char lettre = bouton.Text[0];
+        //    bool MauvauseProposition = false;
 
-        private void btnStart_Click(object sender, EventArgs e)
-        {
-            //CreationTimer();
-            textBox2.Text = nbrManches.ToString();
-            GestionnaireContextes(Contextes.GameStarted);
-            btnStart.Enabled = false;
+        //    for (int i = 0; i < mot.MotInitial.Length; i++)
+        //    {
 
-            joueur.NbEssaiRestant = 7;
-            tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
-            mot.MotInitial = "TYPE";
-            
-            tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
+        //        char[] tab = mot.MotInitial.ToCharArray();
+        //        if (tab[i]== lettre)
+        //        {
+        //            tbMotADeviner.Text= tbMotADeviner.Text.Remove(i, 1).Insert(i, lettre.ToString());
+        //            MauvauseProposition = true;
+        //        }
 
-        }
+        //    }
+        //    if (!tbMotADeviner.Text.Contains('*'))
+        //    {
+
+        //        nbrManches++;
+        //        textBox2.Text = nbrManches.ToString();
+        //        timer.Stop();
+        //        MessageBox.Show("Gagné!!");
+        //        bouton.Enabled = true;
+        //        GestionnaireContextes(Contextes.Between2Games);
+        //        tbMotADeviner.Clear();
+        //        tbNbrEssais.Clear();
+        //        tbTimer.Clear();
+        //        tbNbrEssais.Clear();
+
+        //    }
+        //    if (MauvauseProposition==false)
+        //    {
+        //        joueur.NbEssaiRestant--;
+        //    }
+
+        //    tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
+        //    if (joueur.NbEssaiRestant==0)
+        //    {
+        //       DialogResult dia= MessageBox.Show("Vous avez perdu! Voulez vous rejouer?", "Perdu!", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+        //        if (dia==DialogResult.Yes)
+        //        {
+        //            GestionnaireContextes(Contextes.Initial);
+        //            tbMotADeviner.Clear();
+        //            textBox2.Clear();
+        //            tbTimer.Clear();
+        //            tbNbrEssais.Clear();
+        //            timer.Stop();
+
+        //        }
+        //        else if (dia == DialogResult.No)
+        //        {
+        //            this.Close();
+        //        }
+        //    }
+
+        //    bouton.Enabled = false;
+        //}
         #endregion
-
-        private void timer_Tick(object sender, EventArgs e)
-        {
-            duree++;
-            tbTimer.Text = duree.ToString();   
-        }
-
-        private void Interface_jeux_Load(object sender, EventArgs e)
-        {
-            this.BackgroundImage = Parent.BackgroundImage;
-        }
-
-
-        #region Radio Buttons
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton1.Checked)
-            {
-                GestionnaireContextes(Contextes.StartGame);
-                //GestionDifficulte(NiveauDifficulte.facile);
-                int manche = 3;
-                textBox3.Text = manche.ToString();
-                
-            }
-        }
-
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton2.Checked)
-            {
-               GestionnaireContextes(Contextes.StartGame);
-               //GestionDifficulte(NiveauDifficulte.difficile);
-                int manche = 4;
-                textBox3.Text = manche.ToString();
-
-            }
-        }
-
-        private void radioButton3_CheckedChanged(object sender, EventArgs e)
-        {
-            if (radioButton3.Checked)
-            {
-                GestionnaireContextes(Contextes.StartGame);
-                //Joueur.GestionDifficulte(NiveauDifficulte.expert);
-                int manche = 5;
-                textBox3.Text = manche.ToString();
-                //Mots essai = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
-                //foreach (var item in essai)
-                //{
-                //    tbMotADeviner.Text += $"{item.Texte} ";
-                //}
-            }
-        }
-
-  
-    #endregion
-
-    private void tbMotADeviner_TextChanged(object sender, EventArgs e)
-        {
-            //RemplacerparTirer();
-        }
-
-
     }
 }

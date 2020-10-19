@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace ProjetQuinto
         private int _nbPropositions;
         private int _nbErreurs;
         private int _nbEssaiRestant;
-        string _alias;
+        string _pseudo;
+
 
 
         #region Get/Set
@@ -43,10 +45,14 @@ namespace ProjetQuinto
             set { _nbErreurs = value; }
         }
 
-        public string Alias
+        public string Pseudo
         {
-            get { return _alias; }
-            set { _alias = value; }
+            get { return _pseudo; }
+            set 
+            {
+               if (!IsPseudoValid(value)) throw new ApplicationException(string.Format(CultureInfo.CurrentCulture, "Le pseudo {0} n'est pas valide.", value)); ;
+                this._pseudo = string.Format(CultureInfo.CurrentCulture, "{0}{1}", value.Trim().Substring(0, 1).ToUpper(CultureInfo.CurrentCulture), value.Trim().Substring(1, value.Trim().Length - 1).ToLower(CultureInfo.CurrentCulture));
+            }
         }
 
         public int NbPointsParManche { get => _nbPointsParManche; set => _nbPointsParManche = value; }
@@ -60,6 +66,21 @@ namespace ProjetQuinto
             difficile=1,
             expert=2
         }
+
+        #region Méthode vérification pseudo
+
+        public static bool IsPseudoValid(string value)
+        {
+
+            if (value == null || value.Trim().Length < 3 || value.Trim().Length > 30)
+            {
+                return false;
+            }
+            return true;
+           
+        }
+
+        #endregion
 
         #region Méthodes Difficulté
         static void GestionDifficulte(NiveauDifficulte niveauDifficulte)
@@ -168,8 +189,6 @@ namespace ProjetQuinto
                     {
                         Perdu();
                         return 0;
-
-
 
                     }
                     return Points;
