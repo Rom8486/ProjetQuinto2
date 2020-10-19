@@ -12,6 +12,7 @@ namespace ProjetQuinto
 {
     public partial class MdiMère : Form
     {
+       
         Interface_jeux interface_jeux = new Interface_jeux();
 
         public MdiMère()
@@ -127,6 +128,7 @@ namespace ProjetQuinto
         {
             Close();
         }
+       
 
         
     }

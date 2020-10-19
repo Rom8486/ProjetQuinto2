@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
+using System.Security.Cryptography;
 //using System.Threading;
 
 
@@ -46,13 +47,16 @@ namespace ProjetQuinto
             GameStarted = 2,
             Between2Games = 3
         }
-
+        
+        
+       
         public Interface_jeux()
         {
             InitializeComponent();
             GestionnaireContextes(Contextes.Initial);
             
         }
+       
 
         public void CreationTimer()
         {
@@ -141,7 +145,7 @@ namespace ProjetQuinto
             for (int i = 0; i < mot.MotInitial.Length; i++)
             {
                 
-                char[] tab = mot.MotInitial.ToCharArray();
+                char[] tab = mot.MotInitial.ToUpper().ToCharArray();
                 if (tab[i]== lettre)
                 {
                     tbMotADeviner.Text= tbMotADeviner.Text.Remove(i, 1).Insert(i, lettre.ToString());
@@ -212,13 +216,47 @@ namespace ProjetQuinto
 
         private void btnStart_Click(object sender, EventArgs e)
         {
+
+            if (radioButton1.Checked)
+            {
+                Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
+                foreach (var mot in mots)
+                {
+                    tbEssai2.Text += mot.MotInitial + " ";
+                    
+                }
+                mot =Mots.ChargerMot(mots);
+            }
+            else if (radioButton2.Checked)
+            {
+                Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
+                foreach (var mot in mots)
+                {
+                    tbEssai2.Text += mot.MotInitial + " ";
+                   
+                }
+                mot = Mots.ChargerMot(mots);
+            }
+            else if (radioButton3.Checked)
+            {
+                Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+                foreach (var mot in mots)
+                {
+                    tbEssai2.Text += mot.MotInitial + " ";
+                    
+                }
+                mot =Mots.ChargerMot(mots);
+            }
+           
+            
+            tbEssai2.Text = mot.MotInitial.ToUpper();
             CreationTimer();
             GestionnaireContextes(Contextes.GameStarted);
             btnStart.Enabled = false;
 
             joueur.NbEssaiRestant = 7;
             tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
-            mot.MotInitial = "TOTO";
+           
             
             tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
 
@@ -236,6 +274,18 @@ namespace ProjetQuinto
         private void Interface_jeux_Load(object sender, EventArgs e)
         {
             this.BackgroundImage = Parent.BackgroundImage;
+          
+            //motsDifficile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
+            //foreach (var mot in motsDifficile)
+            //{
+            //    lbMots.Items.Add(mot.MotInitial);
+            //}
+            //motsExpert = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+            //foreach (var mot in motsExpert)
+            //{
+            //    lbMots.Items.Add(mot.MotInitial);
+            //}
+           
         }
 
         #region Radio Buttons

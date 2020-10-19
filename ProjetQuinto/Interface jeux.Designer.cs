@@ -72,6 +72,7 @@
             this.tbTimer = new System.Windows.Forms.TextBox();
             this.lbNbreEssais = new System.Windows.Forms.Label();
             this.tbNbrEssais = new System.Windows.Forms.TextBox();
+            this.tbEssai2 = new System.Windows.Forms.TextBox();
             this.pnlClavier.SuspendLayout();
             this.gbDifficulté.SuspendLayout();
             this.gbInformations.SuspendLayout();
@@ -645,7 +646,6 @@
             this.tbTimer.Size = new System.Drawing.Size(28, 26);
             this.tbTimer.TabIndex = 0;
             this.tbTimer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbTimer.TextChanged += new System.EventHandler(this.tbTimer_TextChanged);
             // 
             // lbNbreEssais
             // 
@@ -673,12 +673,21 @@
             this.tbNbrEssais.TabIndex = 0;
             this.tbNbrEssais.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // tbEssai2
+            // 
+            this.tbEssai2.Location = new System.Drawing.Point(315, 23);
+            this.tbEssai2.Multiline = true;
+            this.tbEssai2.Name = "tbEssai2";
+            this.tbEssai2.Size = new System.Drawing.Size(181, 61);
+            this.tbEssai2.TabIndex = 4;
+            // 
             // Interface_jeux
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 624);
+            this.Controls.Add(this.tbEssai2);
             this.Controls.Add(this.tbNbrEssais);
             this.Controls.Add(this.lbNbreEssais);
             this.Controls.Add(this.tbTimer);
@@ -749,5 +758,6 @@
         private System.Windows.Forms.Button btnE;
         private System.Windows.Forms.Button btnZ;
         private System.Windows.Forms.Button btnA;
+        private System.Windows.Forms.TextBox tbEssai2;
     }
 }

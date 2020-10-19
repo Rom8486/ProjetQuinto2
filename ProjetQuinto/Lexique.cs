@@ -15,14 +15,18 @@ namespace ProjetQuinto
 {
     public partial class Lexique : Form
     {
+
+
         Mots motsFacile = new Mots();
         Mots motsDifficile = new Mots();
         Mots motsExpert = new Mots();
 
-
         public Lexique()
         {
             InitializeComponent();
+           DeserializeAll();
+            
+
             
         }
         private static Lexique _instance;
@@ -43,6 +47,7 @@ namespace ProjetQuinto
         private void Lexique_FormClosed(object sender, FormClosedEventArgs e)
         {
             _instance = null;
+            SerializeAll();
         }
         private void btnValider_Click(object sender, EventArgs e)
         {
@@ -51,7 +56,7 @@ namespace ProjetQuinto
             if (Mot.IsMotValideFacile(tbMot.Text))
             {
 
-                mot.Texte = tbMot.Text;
+                mot.MotInitial = tbMot.Text;
                 motsFacile.Add(mot);
                 tbMot.Clear();
                
@@ -59,7 +64,7 @@ namespace ProjetQuinto
             
             else if (Mot.IsMotValideDifficile(tbMot.Text))
             {
-                mot.Texte = tbMot.Text;
+                mot.MotInitial = tbMot.Text;
                 motsDifficile.Add(mot);
                 tbMot.Clear();
               
@@ -68,7 +73,7 @@ namespace ProjetQuinto
             
            else if (Mot.IsMotValideExpert(tbMot.Text))
             {
-                mot.Texte = tbMot.Text;
+                mot.MotInitial = tbMot.Text;
                 motsExpert.Add(mot);
                 tbMot.Clear();
            
@@ -103,43 +108,53 @@ namespace ProjetQuinto
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsFacileJson.json", motsFacile);
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsDifficileJson.json", motsDifficile);
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsExpertJson.json", motsExpert);
+            
         }
 
         private void Lexique_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SerializeAll();
+            
         }
 
         private void Lexique_Load(object sender, EventArgs e)
         {
+            
+        }
+        //public static void ChargerMots()
+        //{
+        //    Random rand = new Random();
+        //    if (joueur.Niveaudifficulte == "Facile")
+        //    {
+
+        //        int index = rand.Next(motsFacile.Count);
+        //        Mot mot = motsFacile.ElementAt(index);
+        //       // tbEssai.Text = mot.MotInitial;
+        //    }
+        //    else if (joueur.Niveaudifficulte == "Difficile")
+        //    {
+
+        //        int index = rand.Next(motsDifficile.Count);
+        //        Mot mot = motsDifficile.ElementAt(index);
+        //      //  tbEssai.Text = mot.MotInitial;
+        //    }
+        //    else if (joueur.Niveaudifficulte == "Expert")
+        //    {
+        //        int index = rand.Next(motsExpert.Count);
+        //        Mot mot = motsExpert.ElementAt(index);
+        //      //  tbEssai.Text = mot.MotInitial;
+        //    }
+
+
+        //}   
+        public void DeserializeAll()
+        {
+
             motsFacile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
-            foreach (var item in motsFacile)
-            {
-                lbMots.Items.Add(item.Texte);
-            }
-            motsDifficile=(Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
-            foreach (var item in motsDifficile)
-            {
-                lbMots.Items.Add(item.Texte);
-            }
+            motsDifficile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
             motsExpert = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
-            foreach (var item in motsExpert)
-            {
-                lbMots.Items.Add(item.Texte);
-            }
+
         }
     }
-    //public void DeserializeAll()
-    //{
-
-    //    Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
-    //    foreach (var item in mots)
-    //    {
-          
-    //    }
-    //    //Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
-    //    //Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
-
-    //}
+    
 }
 

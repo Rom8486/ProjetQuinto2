@@ -17,6 +17,7 @@ namespace ProjetQuinto
         private int _nbErreurs;
         private int _nbEssaiRestant;
         string _alias;
+        string _niveaudifficulte;
 
 
         #region Get/Set
@@ -51,6 +52,7 @@ namespace ProjetQuinto
 
         public int NbPointsParManche { get => _nbPointsParManche; set => _nbPointsParManche = value; }
         public int NbEssaiRestant { get => _nbEssaiRestant; set => _nbEssaiRestant = value; }
+        public string Niveaudifficulte { get => _niveaudifficulte; set => _niveaudifficulte = value; }
 
         #endregion
 
