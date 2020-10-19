@@ -14,9 +14,7 @@ namespace ProjetQuinto
 {
     public partial class interface_Victoire : Form
     {
-        private string _Pseudo;
-
-        public string Pseudo { get => _Pseudo; set => _Pseudo = value; }
+        Joueur joueur;
 
 
 
@@ -49,22 +47,22 @@ namespace ProjetQuinto
         #endregion
 
         #region Evenements
-        private void btnValider_Click(object sender, EventArgs e)
-        {
+        //private void btnValider_Click(object sender, EventArgs e)
+        //{
 
-            Mot mot = new Mot();
+        //    Mot mot = new Mot();
+        //    //A explorer
+        //    //if (tbPseudo.Text!=null)
+        //    //{
 
-            if (Mot.mot(tbPseudo.Text))
-            {
+        //    //    joueur.Pseudo = tbPseudo.Text;
+        //    //    pseudo.Add(mot);
+        //    //    tbPseudo.Clear();
 
-                pseudo.Texte = tbPseudo.Text;
-                pseudo.Add(mot);
-                tbPseudo.Clear();
+        //    //}
+        //    Serialisation.SaveJson(@"C:\Windows\Temp\Toplayers.json", pseudo);
 
-            }
-            Serialisation.SaveJson(@"C:\Windows\Temp\Toplayers.json", pseudo);
-
-        }
+        //}
 
         //private void Victoire_Load(object sender, EventArgs e)
         //{
@@ -94,28 +92,18 @@ namespace ProjetQuinto
         {
             Mot mot = new Mot();
 
-            mot.Texte = tbPseudo.Text;
-            if (!Mot.mot(tbPseudo.Text))
-            {
-                ep.SetError(btnValider, "Pseudo invalide");
-            }
-            else
-            {
-                ep.SetError(btnValider, string.Empty);
-            }
+            mot.MotInitial = tbPseudo.Text;
+            //if (!IsPseudoValid(tbPseudo.Text))
+            //{
+            //    ep.SetError(btnValider, "Pseudo invalide");
+            //}
+            //else
+            //{
+            //    ep.SetError(btnValider, string.Empty);
+            //}
         }
 
-        private bool IsPseudoValid()
-        {
-            bool valid = true;
-
-            if (tbPseudo.Text = string.Empty)
-            {
-
-            }
-
-            return valid;
-        }
+      
         #endregion
     }
 }

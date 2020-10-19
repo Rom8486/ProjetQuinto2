@@ -147,7 +147,7 @@ namespace ProjetQuinto
                     lbNbreEssais.Enabled = true;
                     tbNbrEssais.Enabled = true;
                     pnlClavier.Enabled = true;
-                    textBox2.Text = nbrManches.ToString();
+                    textBox2.Text = joueur.NbManchesRemportees.ToString();
                     pnlClavier.Enabled = false;
                     ReinitialiserClavier();
                     break;
@@ -185,31 +185,26 @@ namespace ProjetQuinto
 
             if (!tbMotADeviner.Text.Contains('*'))
             {
-
-                MessageBox.Show("Gagné!!");
-                nbrManches++;
                 timer.Stop();
-                textBox2.Text = nbrManches.ToString();
+                MessageBox.Show("Gagné!!");
+                joueur.NbManchesRemportees++;
+                
+                textBox2.Text = joueur.NbManchesRemportees.ToString();
+                joueur.TpsParManche = int.Parse(tbTimer.Text);
+                joueur.NbPoints = joueur.NbPoints + (int)joueur.CalculNbPointsParMancheSimplifie(joueur.TpsParManche, joueur.NbErreurs);
+                textBox4.Text = joueur.NbPoints.ToString();
                 GestionnaireContextes(Contextes.Between2Games);
                 tbMotADeviner.Clear();
                 tbNbrEssais.Clear();
                 tbTimer.Clear();
                 tbNbrEssais.Clear();
+                
             }
-            if (MauvauseProposition == false)
-            {
-                joueur.NbEssaiRestant--;
-
-                joueur.NbManchesRemportees++;
-                textBox2.Text = joueur.NbManchesRemportees.ToString();
-                joueur.TpsParManche = int.Parse(tbTimer.Text);
-                joueur.NbPoints = joueur.NbPoints+(int)joueur.CalculNbPointsParMancheSimplifie(joueur.TpsParManche, joueur.NbErreurs);
-                textBox4.Text = joueur.NbPoints.ToString();
-                if (joueur.NbManchesRemportees==joueur.NbManche)
-                {
-                    MessageBox.Show("Vous avez remporté toutes les manches!\n Felicitation!!!");
-                }
-            }
+                //if (joueur.NbManchesRemportees==joueur.NbManche)
+                //{
+                //    MessageBox.Show("Vous avez remporté toutes les manches!\n Felicitation!!!");
+                //}
+            
 
             tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
             if (joueur.NbEssaiRestant == 0)
@@ -231,7 +226,7 @@ namespace ProjetQuinto
             }
             button.Enabled = false;
 
-            if (textBox2.Text.ToString() == textBox3.Text.ToString())
+            if (joueur.NbManchesRemportees == joueur.NbManche)
             {
                 textBox2.Text = "0";
                 interface_Victoire victoire = interface_Victoire.GetInstance();
@@ -255,8 +250,8 @@ namespace ProjetQuinto
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
-            //CreationTimer();
-            textBox2.Text = nbrManches.ToString();
+            CreationTimer();
+            textBox2.Text = joueur.NbManchesRemportees.ToString();
             GestionnaireContextes(Contextes.GameStarted);
             //DateTime TpsDebut = TempsDebut();
             btnStart.Enabled = false;
@@ -300,8 +295,8 @@ namespace ProjetQuinto
             {
                 GestionnaireContextes(Contextes.StartGame);
                 //GestionDifficulte(NiveauDifficulte.facile);
-                int manche = 3;
-                textBox3.Text = manche.ToString();
+                joueur.NbManche = 3;
+                textBox3.Text = joueur.NbManche.ToString();
 
             }
         }
