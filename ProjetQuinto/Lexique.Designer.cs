@@ -61,7 +61,7 @@
             this.btnValider.TabIndex = 2;
             this.btnValider.Text = "Valider";
             this.btnValider.UseVisualStyleBackColor = true;
-            this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            //this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
             // 
             // epLexique
             // 
@@ -89,8 +89,7 @@
             this.Text = "Lexique";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Lexique_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lexique_FormClosed);
-            this.Load += new System.EventHandler(this.Lexique_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.epLexique)).EndInit();
+//            ((System.ComponentModel.ISupportInitialize)(this.epLexique)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
