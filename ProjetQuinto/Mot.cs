@@ -21,14 +21,8 @@ namespace ProjetQuinto
         public Mot()
         {
         }
-        public bool IsMotValideFacile(string mot)
-        {
-            return false;
-        }
-        public bool IsMotValideDifficile(string mot)
-        {
-            return false;
-        }
+        
+       
 
 
 

@@ -92,7 +92,7 @@ namespace ProjetQuinto
         {
             //Mot mot = new Mot();
 
-            mot.MotInitial = tbPseudo.Text;
+            //mot.MotInitial = tbPseudo.Text;
             //if (!IsPseudoValid(tbPseudo.Text))
             //{
             //    ep.SetError(btnValider, "Pseudo invalide");

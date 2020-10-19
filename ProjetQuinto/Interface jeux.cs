@@ -27,7 +27,7 @@ namespace ProjetQuinto
 
 
         //Hahstset d'essai pour charger mot en debut de manche
-        HashSet<string> HashSetEssai = new HashSet<string>() { "table", "ribambelle", "jardinier", "pepite", "arbre", "vignoble", "heureux" };
+      //  HashSet<string> HashSetEssai = new HashSet<string>() { "table", "ribambelle", "jardinier", "pepite", "arbre", "vignoble", "heureux" };
         
 
         #region Singleton
@@ -257,36 +257,25 @@ namespace ProjetQuinto
             if (radioButton1.Checked)
             {
                 Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
-                foreach (var mot in mots)
-                {
-                    tbEssai2.Text += mot.MotInitial + " ";
-                    
-                }
+               
                 mot =Mots.ChargerMot(mots);
             }
             else if (radioButton2.Checked)
             {
                 Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
-                foreach (var mot in mots)
-                {
-                    tbEssai2.Text += mot.MotInitial + " ";
-                   
-                }
+               
                 mot = Mots.ChargerMot(mots);
             }
             else if (radioButton3.Checked)
             {
                 Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
-                foreach (var mot in mots)
-                {
-                    tbEssai2.Text += mot.MotInitial + " ";
-                    
-                }
+                
+                
                 mot =Mots.ChargerMot(mots);
             }
            
             
-            tbEssai2.Text = mot.MotInitial.ToUpper();
+            
             CreationTimer();
             textBox2.Text = joueur.NbManchesRemportees.ToString();
             GestionnaireContextes(Contextes.GameStarted);
@@ -298,11 +287,11 @@ namespace ProjetQuinto
            
             
             //essai pour charger mot aleatoire à partir du hashset d'essai
-            Random aleatoire = new Random();
-            int index=aleatoire.Next(0, 5);
-            string LeMot = HashSetEssai.ElementAt(index);
-            mot.MotInitial = LeMot.ToUpper();
-            tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
+           // Random aleatoire = new Random();
+           // int index=aleatoire.Next(0, 5);
+           // string LeMot = HashSetEssai.ElementAt(index);
+           // mot.MotInitial = LeMot.ToUpper();
+           tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
             
             //FinEssai
 
