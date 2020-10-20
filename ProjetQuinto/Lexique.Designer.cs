@@ -62,7 +62,7 @@
             this.btnValider.TabIndex = 2;
             this.btnValider.Text = "Valider";
             this.btnValider.UseVisualStyleBackColor = true;
-            //this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click_1);
             // 
             // epLexique
             // 
@@ -82,6 +82,7 @@
             this.tbEssai.Name = "tbEssai";
             this.tbEssai.Size = new System.Drawing.Size(100, 20);
             this.tbEssai.TabIndex = 4;
+            this.tbEssai.TextChanged += new System.EventHandler(this.tbEssai_TextChanged);
             // 
             // Lexique
             // 
@@ -96,7 +97,6 @@
             this.Name = "Lexique";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lexique";
-            //this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Lexique_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Lexique_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.epLexique)).EndInit();
             this.ResumeLayout(false);

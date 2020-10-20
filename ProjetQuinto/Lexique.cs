@@ -15,7 +15,7 @@ namespace ProjetQuinto
 {
     public partial class Lexique : Form
     {
-
+       
 
         Mots motsFacile = new Mots();
         Mots motsDifficile = new Mots();
@@ -24,10 +24,10 @@ namespace ProjetQuinto
         public Lexique()
         {
             InitializeComponent();
-           DeserializeAll();
-            
+            DeserializeAll();
+            tbEssai.Text = "rorororo";
 
-            
+
         }
         private static Lexique _instance;
 
@@ -151,6 +151,44 @@ namespace ProjetQuinto
             motsFacile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
             motsDifficile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
             motsExpert = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+
+        }
+
+        private void btnValider_Click_1(object sender, EventArgs e)
+        {
+            Mot mot = new Mot();
+
+            if (Mot.IsMotValideFacile(tbMot.Text))
+            {
+
+                mot.MotInitial = tbMot.Text;
+                motsFacile.Add(mot);
+                tbMot.Clear();
+
+            }
+
+            else if (Mot.IsMotValideDifficile(tbMot.Text))
+            {
+                mot.MotInitial = tbMot.Text;
+                motsDifficile.Add(mot);
+                tbMot.Clear();
+
+            }
+
+
+            else if (Mot.IsMotValideExpert(tbMot.Text))
+            {
+                mot.MotInitial = tbMot.Text;
+                motsExpert.Add(mot);
+                tbMot.Clear();
+
+
+            }
+
+        }
+
+        private void tbEssai_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

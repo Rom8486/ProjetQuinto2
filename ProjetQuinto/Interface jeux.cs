@@ -276,10 +276,13 @@ namespace ProjetQuinto
                 
                 mot =Mots.ChargerMot(mots);
             }
-           
-            
-            
-            CreationTimer();
+
+            if (joueur.NbManchesRemportees==0)
+            {
+                CreationTimer();
+            }
+
+            timer.Start();
             textBox2.Text = joueur.NbManchesRemportees.ToString();
             GestionnaireContextes(Contextes.GameStarted);
             //DateTime TpsDebut = TempsDebut();

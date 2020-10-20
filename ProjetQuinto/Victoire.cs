@@ -14,23 +14,29 @@ namespace ProjetQuinto
 {
     public partial class interface_Victoire : Form
     {
-        Joueur joueur = new Joueur();
+        private Joueur _joueur;
+
+       
+        //Joueur joueur = new Joueur();
         HashsetDeJoueur ListeJoueur = new HashsetDeJoueur();
 
-
+       
         Mots pseudo = new Mots();
         ErrorProvider ep = new ErrorProvider();
         //Mots score = new Mots(); Score n'est pas un mot
 
         public interface_Victoire()
         {
+            
             InitializeComponent();
+           // tbScore.Text =joueur.NbPoints.ToString();
+
         }
 
         #region Singleton
         private static interface_Victoire _instance;
 
-       
+        public Joueur Joueur { get => _joueur; set => _joueur = value; }
 
         public static interface_Victoire GetInstance()
         {
@@ -106,16 +112,16 @@ namespace ProjetQuinto
 
         #endregion
 
-        private void btnValider_Click(object sender, EventArgs e)
-        {
+        //private void btnValider_Click(object sender, EventArgs e)
+        //{
             
             
-            tbPseudo.Text = joueur.Pseudo;
-            ListeJoueur.Add(joueur);
-            tbPseudo.Clear();
-            Serialisation.SaveJson(@"C:\Users\CDA\Desktop\Meilleurs_scores",ListeJoueur);
+        //    tbPseudo.Text = joueur.Pseudo;
+        //    ListeJoueur.Add(joueur);
+        //    tbPseudo.Clear();
+        //    Serialisation.SaveJson(@"C:\Users\CDA\Desktop\Meilleurs_scores",ListeJoueur);
 
-        }
+        //}
 
        
     }
