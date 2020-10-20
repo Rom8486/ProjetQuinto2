@@ -80,7 +80,7 @@ namespace ProjetQuinto
         public static bool IsPseudoValid(string value)
         {
 
-            if (value == null || value.Trim().Length < 3 || value.Trim().Length > 30)
+            if (value == null || value.Trim().Length < 5 || value.Trim().Length > 30)
             {
                 return false;
             }

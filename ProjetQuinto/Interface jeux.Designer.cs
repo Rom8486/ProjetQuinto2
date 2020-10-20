@@ -644,7 +644,7 @@
             this.tbTimer.Location = new System.Drawing.Point(207, 198);
             this.tbTimer.Name = "tbTimer";
             this.tbTimer.ReadOnly = true;
-            this.tbTimer.Size = new System.Drawing.Size(28, 26);
+            this.tbTimer.Size = new System.Drawing.Size(52, 26);
             this.tbTimer.TabIndex = 0;
             this.tbTimer.TabStop = false;
             this.tbTimer.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

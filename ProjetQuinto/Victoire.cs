@@ -9,28 +9,25 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Windows.Forms;
+//using static ProjetQuinto.Interface_jeux;
 
 namespace ProjetQuinto
 {
     public partial class interface_Victoire : Form
     {
         Joueur joueur;
-
-
-
-        Mots pseudo = new Mots();
+        HashsetJoueurs listeJoueurs = new HashsetJoueurs();
         ErrorProvider ep = new ErrorProvider();
-        //Mots score = new Mots(); Score n'est pas un mot
 
         public interface_Victoire()
         {
             InitializeComponent();
+            tbScore.Text = joueur.NbPoints.ToString();
         }
+
 
         #region Singleton
         private static interface_Victoire _instance;
-
-       
 
         public static interface_Victoire GetInstance()
         {
@@ -47,63 +44,74 @@ namespace ProjetQuinto
         #endregion
 
         #region Evenements
-        //private void btnValider_Click(object sender, EventArgs e)
-        //{
-
-        //    Mot mot = new Mot();
-        //    //A explorer
-        //    //if (tbPseudo.Text!=null)
-        //    //{
-
-        //    //    joueur.Pseudo = tbPseudo.Text;
-        //    //    pseudo.Add(mot);
-        //    //    tbPseudo.Clear();
-
-        //    //}
-        //    Serialisation.SaveJson(@"C:\Windows\Temp\Toplayers.json", pseudo);
-
-        //}
-
-        //private void Victoire_Load(object sender, EventArgs e)
-        //{
-        //    pseudo = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\Toplayers.json", typeof(Mots));
-        //    foreach (var item in pseudo)
-        //    {
-        //        tbPseudo.Items.Add(item.Texte);
-        //    }
-        //}
-
-        private void btnOuiVictoire_Click(object sender, EventArgs e)
+        private void btnValider_Click(object sender, EventArgs e)
         {
-            this.Close();
-            //GestionnaireContextes(Contextes.Initial); Comment faire pour que le gestionnaire de contexte puisse être pris en compte ici?
-        }
+            if (IsChampsValid() == true)
+            {
+                Joueur joueur = new Joueur();
+                joueur.Pseudo = tbPseudo.Text;
+                listeJoueurs.Add(joueur);
+                Serialisation.SaveJson(@"C:\Windows\Temp\Toplayers.json", listeJoueurs);
+                DialogResult result = MessageBox.Show("Félicitations, vous faites désormais partie\n" +
+                    "du Top 10 des meilleurs joueurs de tous les temps.\n" +
+                    "Souhaitez-vous refaire une partie?", "////***Congratulations!!!***\\\\",
+                    MessageBoxButtons.YesNo);
 
-        private void btnNonVictoire_Click(object sender, EventArgs e)
-        {
+                if (result == DialogResult.Yes)
+                {
+                    tbPseudo.Clear();
+                    tbScore.Clear();
 
-            this.Close();
-            Interface_jeux.ActiveForm.Close(); // Problème: Ferme tout l'application
+                    //Faudrait faire un gestionnaire de contextes qui renvoie au menu principal du jeu
+                }
+                else
+                {
+                    this.Close();
+                    interface_Victoire.ActiveForm.Close();
+                }
+            }
         }
         #endregion
 
-        #region Méthodes Vérification
+        #region Méthode globale de vérification des champs du salarié
+        private bool IsChampsValid()
+        {
+            ErrorProvider ep = new ErrorProvider();
+
+            bool valid = true;
+
+            if (!Joueur.IsPseudoValid(tbPseudo.Text))
+            {
+                ep.SetError(tbPseudo, "Le pseudo est incorrect");
+                return false;
+            }
+            else
+            {
+                ep.SetError(tbPseudo, "");
+
+            }
+            return valid;
+
+        }
+        #endregion
+
+        #region Méthode validating
         private void tbPseudo_Validating(object sender, CancelEventArgs e)
         {
-            //Mot mot = new Mot();
+            ErrorProvider ep = new ErrorProvider();
 
-            mot.MotInitial = tbPseudo.Text;
-            //if (!IsPseudoValid(tbPseudo.Text))
-            //{
-            //    ep.SetError(btnValider, "Pseudo invalide");
-            //}
-            //else
-            //{
-            //    ep.SetError(btnValider, string.Empty);
-            //}
+            if (!Joueur.IsPseudoValid(tbPseudo.Text))
+            {
+                ep.SetError(tbPseudo, "Le pseudo est incorrect");
+                
+            }
+            else
+            {
+                ep.SetError(tbPseudo, "");
+
+            }
+
         }
-
-      
         #endregion
     }
 }
