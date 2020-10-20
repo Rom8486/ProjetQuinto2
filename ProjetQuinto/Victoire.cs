@@ -21,6 +21,7 @@ namespace ProjetQuinto
 
         public interface_Victoire()
         {
+            
             InitializeComponent();
             tbScore.Text = joueur.NbPoints.ToString();
         }
@@ -113,5 +114,18 @@ namespace ProjetQuinto
 
         }
         #endregion
+
+        //private void btnValider_Click(object sender, EventArgs e)
+        //{
+            
+            
+        //    tbPseudo.Text = joueur.Pseudo;
+        //    ListeJoueur.Add(joueur);
+        //    tbPseudo.Clear();
+        //    Serialisation.SaveJson(@"C:\Users\CDA\Desktop\Meilleurs_scores",ListeJoueur);
+
+        //}
+
+       
     }
 }

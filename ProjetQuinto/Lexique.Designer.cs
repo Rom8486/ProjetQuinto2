@@ -34,6 +34,7 @@
             this.btnValider = new System.Windows.Forms.Button();
             this.epLexique = new System.Windows.Forms.ErrorProvider(this.components);
             this.lbMots = new System.Windows.Forms.ListBox();
+            this.tbEssai = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.epLexique)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,7 +62,7 @@
             this.btnValider.TabIndex = 2;
             this.btnValider.Text = "Valider";
             this.btnValider.UseVisualStyleBackColor = true;
-            //this.btnValider.Click += new System.EventHandler(this.btnValider_Click);
+            this.btnValider.Click += new System.EventHandler(this.btnValider_Click_1);
             // 
             // epLexique
             // 
@@ -75,11 +76,20 @@
             this.lbMots.Size = new System.Drawing.Size(120, 212);
             this.lbMots.TabIndex = 3;
             // 
+            // tbEssai
+            // 
+            this.tbEssai.Location = new System.Drawing.Point(420, 360);
+            this.tbEssai.Name = "tbEssai";
+            this.tbEssai.Size = new System.Drawing.Size(100, 20);
+            this.tbEssai.TabIndex = 4;
+            this.tbEssai.TextChanged += new System.EventHandler(this.tbEssai_TextChanged);
+            // 
             // Lexique
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.tbEssai);
             this.Controls.Add(this.lbMots);
             this.Controls.Add(this.btnValider);
             this.Controls.Add(this.tbMot);
@@ -101,5 +111,6 @@
         private System.Windows.Forms.Button btnValider;
         private System.Windows.Forms.ErrorProvider epLexique;
         private System.Windows.Forms.ListBox lbMots;
+        private System.Windows.Forms.TextBox tbEssai;
     }
 }

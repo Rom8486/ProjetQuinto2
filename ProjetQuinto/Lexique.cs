@@ -15,15 +15,19 @@ namespace ProjetQuinto
 {
     public partial class Lexique : Form
     {
+       
+
         Mots motsFacile = new Mots();
         Mots motsDifficile = new Mots();
         Mots motsExpert = new Mots();
 
-
         public Lexique()
         {
             InitializeComponent();
-            
+            DeserializeAll();
+            tbEssai.Text = "rorororo";
+
+
         }
         private static Lexique _instance;
 
@@ -43,100 +47,151 @@ namespace ProjetQuinto
         private void Lexique_FormClosed(object sender, FormClosedEventArgs e)
         {
             _instance = null;
+            SerializeAll();
         }
-        //private void btnValider_Click(object sender, EventArgs e)
-        //{
-        //    Mot mot = new Mot();
-           
-        //    if (mot.IsMotValideFacile(tbMot.Text))
-        //    {
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            Mot mot = new Mot();
 
-        //        mot.MotInitial = tbMot.Text;
-        //        motsFacile.Add(mot);
-        //        tbMot.Clear();
-               
-        //    }
-            
-        //    else if (Mot.IsMotValideDifficile(tbMot.Text))
-        //    {
-        //        mot.MotInitial = tbMot.Text;
-        //        motsDifficile.Add(mot);
-        //        tbMot.Clear();
-              
-        //    }
-           
-            
-        //   else if (Mot.IsMotValideExpert(tbMot.Text))
-        //    {
-        //        mot.MotInitial = tbMot.Text;
-        //        motsExpert.Add(mot);
-        //        tbMot.Clear();
-           
-        //    }
-        //    else
-        //    {
-        //        MessageBox.Show("Mot entré dans le lexique incorrect", "Erreur!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-        //    }
+            if (Mot.IsMotValideFacile(tbMot.Text))
+            {
+
+                mot.MotInitial = tbMot.Text;
+                motsFacile.Add(mot);
+                tbMot.Clear();
+
+            }
+
+            else if (Mot.IsMotValideDifficile(tbMot.Text))
+            {
+                mot.MotInitial = tbMot.Text;
+                motsDifficile.Add(mot);
+                tbMot.Clear();
+
+            }
 
 
+            else if (Mot.IsMotValideExpert(tbMot.Text))
+            {
+                mot.MotInitial = tbMot.Text;
+                motsExpert.Add(mot);
+                tbMot.Clear();
 
-        //}
 
-        //private void tbMot_Validating(object sender, CancelEventArgs e)
-        //{
-        //    mot.Texte = tbMot.Text;
-        //    if (!Mot.IsMotValideFacile(tbMot.Text))
-        //    {
-        //        epLexique.SetError(btnValider, "Mot invalide");
-        //    }
-        //    else
-        //    {
-        //        epLexique.SetError(btnValider, string.Empty);
-        //    }
+            }
+        }
+            //    else
+            //    {
+            //        MessageBox.Show("Mot entré dans le lexique incorrect", "Erreur!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    }
 
-        //}
-        public void SerializeAll()
+
+
+            //}
+
+            //private void tbMot_Validating(object sender, CancelEventArgs e)
+            //{
+            //    mot.Texte = tbMot.Text;
+            //    if (!Mot.IsMotValideFacile(tbMot.Text))
+            //    {
+            //        epLexique.SetError(btnValider, "Mot invalide");
+            //    }
+            //    else
+            //    {
+            //        epLexique.SetError(btnValider, string.Empty);
+            //    }
+
+            //}
+            public void SerializeAll()
         {
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsFacileJson.json", motsFacile);
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsDifficileJson.json", motsDifficile);
             Serialisation.SaveJson(@"C:\Windows\Temp\MotsExpertJson.json", motsExpert);
+            
         }
 
         private void Lexique_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SerializeAll();
+            
         }
 
-        //private void Lexique_Load(object sender, EventArgs e)
+        private void Lexique_Load(object sender, EventArgs e)
+        {
+            
+        }
+        //public static void ChargerMots()
         //{
-        //    motsFacile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
-        //    foreach (var item in motsFacile)
+        //    Random rand = new Random();
+        //    if (joueur.Niveaudifficulte == "Facile")
         //    {
-        //        lbMots.Items.Add(item.Texte);
+
+        //        int index = rand.Next(motsFacile.Count);
+        //        Mot mot = motsFacile.ElementAt(index);
+        //       // tbEssai.Text = mot.MotInitial;
         //    }
-        //    motsDifficile=(Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
-        //    foreach (var item in motsDifficile)
+        //    else if (joueur.Niveaudifficulte == "Difficile")
         //    {
-        //        lbMots.Items.Add(item.Texte);
+
+        //        int index = rand.Next(motsDifficile.Count);
+        //        Mot mot = motsDifficile.ElementAt(index);
+        //      //  tbEssai.Text = mot.MotInitial;
         //    }
-        //    motsExpert = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
-        //    foreach (var item in motsExpert)
+        //    else if (joueur.Niveaudifficulte == "Expert")
         //    {
-        //        lbMots.Items.Add(item.Texte);
+        //        int index = rand.Next(motsExpert.Count);
+        //        Mot mot = motsExpert.ElementAt(index);
+        //      //  tbEssai.Text = mot.MotInitial;
         //    }
-        //}
+
+
+        //}   
+        public void DeserializeAll()
+        {
+
+            motsFacile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
+            motsDifficile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
+            motsExpert = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+
+        }
+
+        private void btnValider_Click_1(object sender, EventArgs e)
+        {
+            Mot mot = new Mot();
+
+            if (Mot.IsMotValideFacile(tbMot.Text))
+            {
+
+                mot.MotInitial = tbMot.Text;
+                motsFacile.Add(mot);
+                tbMot.Clear();
+
+            }
+
+            else if (Mot.IsMotValideDifficile(tbMot.Text))
+            {
+                mot.MotInitial = tbMot.Text;
+                motsDifficile.Add(mot);
+                tbMot.Clear();
+
+            }
+
+
+            else if (Mot.IsMotValideExpert(tbMot.Text))
+            {
+                mot.MotInitial = tbMot.Text;
+                motsExpert.Add(mot);
+                tbMot.Clear();
+
+
+            }
+
+        }
+
+        private void tbEssai_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
-        //public void DeserializeAll()
-         //{
-
-         //    Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
-         //    foreach (var item in mots)
-         //    {
-          
-         //    }
-         //    //Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
-         //    //Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
-
-          //}
+    
 }
 

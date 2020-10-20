@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 
 namespace TestConsole
@@ -10,51 +12,63 @@ namespace TestConsole
         static void Main(string[] args)
         {
 
+            Random random = new Random();
+            HashSet<string> set = new HashSet<string>()
+            {
+                "A", "B", "C","D", "E","F"
+            };
+            for (int i = 0; i < 10; i++)
+            {
+                int index = random.Next(set.Count);
+                string lettre = set.ElementAt(index);
+
+                Console.WriteLine(lettre);
+            }
             //Console.WriteLine(Tirets("Romain"));
 
-            static string Tirets(string mot)
-            {
-                string resultat = "";
-                int longueur = mot.Length;
-                for (int i = 0; i < longueur; i++)
-                {
-                    resultat += "_ ";
-                }
-                return resultat;
-            }
+            //static string Tirets(string mot)
+            //{
+            //    string resultat = "";
+            //    int longueur = mot.Length;
+            //    for (int i = 0; i < longueur; i++)
+            //    {
+            //        resultat += "_ ";
+            //    }
+            //    return resultat;
+            //}
 
-            Console.WriteLine(RemplacerLettre('A', "MANON", "*****"));
+            //Console.WriteLine(RemplacerLettre('A', "MANON", "*****"));
 
 
-            static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
-            {
-                int nbrEssais = 8;
-                bool resultat;
-                char[] tabChar = motEnCoursDecouverte.ToCharArray();
+            //static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
+            //{
+            //    int nbrEssais = 8;
+            //    bool resultat;
+            //    char[] tabChar = motEnCoursDecouverte.ToCharArray();
 
-                resultat = false;
-                for (int i = 0; i < motaDecouvrir.Length; i++)
-                {
+            //    resultat = false;
+            //    for (int i = 0; i < motaDecouvrir.Length; i++)
+            //    {
                    
-                    if (motaDecouvrir[i] == lettre)
-                    {
-                        resultat = true;
-                        tabChar[i] = lettre;
-                    }
+            //        if (motaDecouvrir[i] == lettre)
+            //        {
+            //            resultat = true;
+            //            tabChar[i] = lettre;
+            //        }
  
 
-                }
-                if (resultat == true)
-                {
-                    motEnCoursDecouverte = new string(tabChar);
-                }
-                else
-                {
-                    nbrEssais--;
-                }
-                return resultat;
+            //    }
+            //    if (resultat == true)
+            //    {
+            //        motEnCoursDecouverte = new string(tabChar);
+            //    }
+            //    else
+            //    {
+            //        nbrEssais--;
+            //    }
+            //    return resultat;
 
-            }
+            //}
 
 
             //static bool RemplacerLettre(char lettre, string motaDecouvrir, string motEnCoursDecouverte)
@@ -91,23 +105,23 @@ namespace TestConsole
 
             //Console.WriteLine(trouverLaLettre('i', "Aristocrate"));
 
-            static bool trouverLaLettre(char lettre, string mot)
-            {
+            //static bool trouverLaLettre(char lettre, string mot)
+            //{
 
 
-                char[] charArray = mot.ToCharArray();
-                bool valeur = false;
+            //    char[] charArray = mot.ToCharArray();
+            //    bool valeur = false;
 
-                foreach (char c in charArray)
-                {
-                    if (lettre == c)
-                    {
-                        return true;
-                    }
+            //    foreach (char c in charArray)
+            //    {
+            //        if (lettre == c)
+            //        {
+            //            return true;
+            //        }
 
-                }
-                return false;
-            }
+            //    }
+            //    return false;
+            //}
         }
 
 

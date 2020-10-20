@@ -22,6 +22,7 @@ namespace ProjetQuinto
         private int _nbPoints;
         string _alias;
         string _pseudo;
+        string _niveaudifficulte;
 
 
 
@@ -65,6 +66,7 @@ namespace ProjetQuinto
         public int TpsParManche { get => _tpsParManche; set => _tpsParManche = value; }
         public int NbManche { get => _nbManche; set => _nbManche = value; }
         public int NbPoints1 { get => _nbPoints; set => _nbPoints = value; }
+        public string Niveaudifficulte { get => _niveaudifficulte; set => _niveaudifficulte = value; }
 
         #endregion
 

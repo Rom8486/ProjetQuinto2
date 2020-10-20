@@ -12,6 +12,7 @@ using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 //using System.Threading;
 
 
@@ -22,11 +23,11 @@ namespace ProjetQuinto
         Mot mot = new Mot();
         Joueur joueur = new Joueur();
         Timer timer = new Timer();
-        int Duree = 0;
+        int duree = 0;
 
 
         //Hahstset d'essai pour charger mot en debut de manche
-        HashSet<string> HashSetEssai = new HashSet<string>() { "table", "ribambelle", "jardinier", "pepite", "arbre", "vignoble", "heureux" };
+      //  HashSet<string> HashSetEssai = new HashSet<string>() { "table", "ribambelle", "jardinier", "pepite", "arbre", "vignoble", "heureux" };
         
 
         #region Singleton
@@ -45,7 +46,7 @@ namespace ProjetQuinto
         }
         #endregion
 
-        int duree = 0;
+        
 
         enum Contextes
         {
@@ -54,7 +55,9 @@ namespace ProjetQuinto
             GameStarted = 2,
             Between2Games = 3
         }
-
+        
+        
+       
         public Interface_jeux()
         {
             InitializeComponent();
@@ -73,22 +76,22 @@ namespace ProjetQuinto
             timer.Start();
 
         }
-        public DateTime TempsDebut()
-        {
-            DateTime TpsDebut = DateTime.Now;
-            return TpsDebut;
-        }
-        public DateTime TempsFin()
-        {
-            DateTime TpsFin = DateTime.Now;
-            return TpsFin;
-        }
-        public int CalculerTemps(DateTime tpsDebut, DateTime tpsFin)
-        {
-            TimeSpan span = (tpsFin - tpsDebut);
-            int resultat = (int)span.TotalSeconds;
-            return resultat;
-        }
+        //public DateTime TempsDebut()
+        //{
+        //    DateTime TpsDebut = DateTime.Now;
+        //    return TpsDebut;
+        //}
+        //public DateTime TempsFin()
+        //{
+        //    DateTime TpsFin = DateTime.Now;
+        //    return TpsFin;
+        //}
+        //public int CalculerTemps(DateTime tpsDebut, DateTime tpsFin)
+        //{
+        //    TimeSpan span = (tpsFin - tpsDebut);
+        //    int resultat = (int)span.TotalSeconds;
+        //    return resultat;
+        //}
         private void timer_Tick(object sender, EventArgs e)
         {
             duree++;
@@ -167,9 +170,9 @@ namespace ProjetQuinto
 
             for (int i = 0; i < mot.MotInitial.Length; i++)
             {
-
-                char[] tab = mot.MotInitial.ToCharArray();
-                if (tab[i] == lettre)
+                
+                char[] tab = mot.MotInitial.ToUpper().ToCharArray();
+                if (tab[i]== lettre)
                 {
                     tbMotADeviner.Text = tbMotADeviner.Text.Remove(i, 1).Insert(i, lettre.ToString());
                     MauvauseProposition = true;
@@ -186,6 +189,8 @@ namespace ProjetQuinto
             if (!tbMotADeviner.Text.Contains('*'))
             {
                 timer.Stop();
+                timer.Dispose();
+                duree = 0;
                 MessageBox.Show("Gagné!!");
                 joueur.NbManchesRemportees++;
                 
@@ -196,8 +201,9 @@ namespace ProjetQuinto
                 GestionnaireContextes(Contextes.Between2Games);
                 tbMotADeviner.Clear();
                 tbNbrEssais.Clear();
-                tbTimer.Clear();
+                tbTimer.Text = "0";
                 tbNbrEssais.Clear();
+                
                 
             }
                 //if (joueur.NbManchesRemportees==joueur.NbManche)
@@ -250,7 +256,33 @@ namespace ProjetQuinto
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
-            CreationTimer();
+
+            if (radioButton1.Checked)
+            {
+                Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsFacileJson.json", typeof(Mots));
+               
+                mot =Mots.ChargerMot(mots);
+            }
+            else if (radioButton2.Checked)
+            {
+                Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
+               
+                mot = Mots.ChargerMot(mots);
+            }
+            else if (radioButton3.Checked)
+            {
+                Mots mots = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+                
+                
+                mot =Mots.ChargerMot(mots);
+            }
+
+            if (joueur.NbManchesRemportees==0)
+            {
+                CreationTimer();
+            }
+
+            timer.Start();
             textBox2.Text = joueur.NbManchesRemportees.ToString();
             GestionnaireContextes(Contextes.GameStarted);
             //DateTime TpsDebut = TempsDebut();
@@ -258,13 +290,14 @@ namespace ProjetQuinto
 
             joueur.NbEssaiRestant = 7;
             tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
+           
             
             //essai pour charger mot aleatoire à partir du hashset d'essai
-            Random aleatoire = new Random();
-            int index=aleatoire.Next(0, 5);
-            string LeMot = HashSetEssai.ElementAt(index);
-            mot.MotInitial = LeMot.ToUpper();
-            tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
+           // Random aleatoire = new Random();
+           // int index=aleatoire.Next(0, 5);
+           // string LeMot = HashSetEssai.ElementAt(index);
+           // mot.MotInitial = LeMot.ToUpper();
+           tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
             
             //FinEssai
 
@@ -285,6 +318,18 @@ namespace ProjetQuinto
         private void Interface_jeux_Load(object sender, EventArgs e)
         {
             this.BackgroundImage = Parent.BackgroundImage;
+          
+            //motsDifficile = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsDifficileJson.json", typeof(Mots));
+            //foreach (var mot in motsDifficile)
+            //{
+            //    lbMots.Items.Add(mot.MotInitial);
+            //}
+            //motsExpert = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
+            //foreach (var mot in motsExpert)
+            //{
+            //    lbMots.Items.Add(mot.MotInitial);
+            //}
+           
         }
         #endregion
 

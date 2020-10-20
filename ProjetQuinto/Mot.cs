@@ -21,14 +21,8 @@ namespace ProjetQuinto
         public Mot()
         {
         }
-        public bool IsMotValideFacile(string mot)
-        {
-            return false;
-        }
-        public bool IsMotValideDifficile(string mot)
-        {
-            return false;
-        }
+        
+       
 
 
 
@@ -148,5 +142,37 @@ namespace ProjetQuinto
             }
             return tableau;
         }
+        public static bool IsMotValideFacile(string value)
+        {
+            if (value == null || value.Trim().Length < 5 || value.Trim().Length > 8) return false;
+
+            foreach (char caractere in value)
+            {
+                if (!char.IsLetter(caractere)) return false;
+            }
+            return true;
+        }
+        public static bool IsMotValideDifficile(string value)
+        {
+            if (value == null || value.Trim().Length < 8 || value.Trim().Length > 10) return false;
+
+            foreach (char caractere in value)
+            {
+                if (!char.IsLetter(caractere)) return false;
+            }
+            return true;
+        }
+        public static bool IsMotValideExpert (string value)
+        {
+            if (value == null || value.Trim().Length < 10) return false;
+
+            foreach (char caractere in value)
+            {
+                if (!char.IsLetter(caractere)) return false;
+            }
+            return true;
+        }
+
+
     }
 }
