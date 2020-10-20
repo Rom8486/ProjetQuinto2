@@ -21,9 +21,13 @@ namespace ProjetQuinto
     {
         Mot mot = new Mot();
         Joueur joueur = new Joueur();
-        int nbrManches = 0;
         Timer timer = new Timer();
+        int Duree = 0;
 
+
+        //Hahstset d'essai pour charger mot en debut de manche
+        HashSet<string> HashSetEssai = new HashSet<string>() { "table", "ribambelle", "jardinier", "pepite", "arbre", "vignoble", "heureux" };
+        
 
         #region Singleton
         private static Interface_jeux _instance;
@@ -62,7 +66,7 @@ namespace ProjetQuinto
 
         public void CreationTimer()
         {
-
+            
             timer.Interval = 1000;
             timer.Enabled = true;
             timer.Tick += timer_Tick;
@@ -143,7 +147,7 @@ namespace ProjetQuinto
                     lbNbreEssais.Enabled = true;
                     tbNbrEssais.Enabled = true;
                     pnlClavier.Enabled = true;
-                    textBox2.Text = nbrManches.ToString();
+                    textBox2.Text = joueur.NbManchesRemportees.ToString();
                     pnlClavier.Enabled = false;
                     ReinitialiserClavier();
                     break;
@@ -172,23 +176,35 @@ namespace ProjetQuinto
                 }
 
             }
+            if (MauvauseProposition == false)
+            {
+                joueur.NbEssaiRestant--;
+                joueur.NbErreurs++;
+            }          
+            tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
+
             if (!tbMotADeviner.Text.Contains('*'))
             {
-
-                MessageBox.Show("Gagné!!");
-                nbrManches++;
                 timer.Stop();
-                textBox2.Text = nbrManches.ToString();
+                MessageBox.Show("Gagné!!");
+                joueur.NbManchesRemportees++;
+                
+                textBox2.Text = joueur.NbManchesRemportees.ToString();
+                joueur.TpsParManche = int.Parse(tbTimer.Text);
+                joueur.NbPoints = joueur.NbPoints + (int)joueur.CalculNbPointsParMancheSimplifie(joueur.TpsParManche, joueur.NbErreurs);
+                textBox4.Text = joueur.NbPoints.ToString();
                 GestionnaireContextes(Contextes.Between2Games);
                 tbMotADeviner.Clear();
                 tbNbrEssais.Clear();
                 tbTimer.Clear();
                 tbNbrEssais.Clear();
+                
             }
-            if (MauvauseProposition == false)
-            {
-                joueur.NbEssaiRestant--;
-            }
+                //if (joueur.NbManchesRemportees==joueur.NbManche)
+                //{
+                //    MessageBox.Show("Vous avez remporté toutes les manches!\n Felicitation!!!");
+                //}
+            
 
             tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
             if (joueur.NbEssaiRestant == 0)
@@ -210,7 +226,7 @@ namespace ProjetQuinto
             }
             button.Enabled = false;
 
-            if (textBox2.Text.ToString() == textBox3.Text.ToString())
+            if (joueur.NbManchesRemportees == joueur.NbManche)
             {
                 textBox2.Text = "0";
                 interface_Victoire victoire = interface_Victoire.GetInstance();
@@ -234,17 +250,23 @@ namespace ProjetQuinto
         }
         private void btnStart_Click(object sender, EventArgs e)
         {
-            //CreationTimer();
-            textBox2.Text = nbrManches.ToString();
+            CreationTimer();
+            textBox2.Text = joueur.NbManchesRemportees.ToString();
             GestionnaireContextes(Contextes.GameStarted);
+            //DateTime TpsDebut = TempsDebut();
             btnStart.Enabled = false;
 
             joueur.NbEssaiRestant = 7;
             tbNbrEssais.Text = joueur.NbEssaiRestant.ToString();
-            mot.MotInitial = "TYPE";
-
+            
+            //essai pour charger mot aleatoire à partir du hashset d'essai
+            Random aleatoire = new Random();
+            int index=aleatoire.Next(0, 5);
+            string LeMot = HashSetEssai.ElementAt(index);
+            mot.MotInitial = LeMot.ToUpper();
             tbMotADeviner.Text = mot.MettreTirets(mot.MotInitial);
-
+            
+            //FinEssai
 
         }
         #endregion
@@ -273,8 +295,8 @@ namespace ProjetQuinto
             {
                 GestionnaireContextes(Contextes.StartGame);
                 //GestionDifficulte(NiveauDifficulte.facile);
-                int manche = 3;
-                textBox3.Text = manche.ToString();
+                joueur.NbManche = 3;
+                textBox3.Text = joueur.NbManche.ToString();
 
             }
         }
@@ -284,10 +306,10 @@ namespace ProjetQuinto
         {
             if (radioButton2.Checked)
             {
-                GestionnaireContextes(Contextes.StartGame);
+               GestionnaireContextes(Contextes.StartGame);
                 //GestionDifficulte(NiveauDifficulte.difficile);
-                int manche = 4;
-                textBox3.Text = manche.ToString();
+                joueur.NbManche = 4;
+                textBox3.Text = joueur.NbManche.ToString();
 
             }
         }
@@ -298,8 +320,8 @@ namespace ProjetQuinto
             {
                 GestionnaireContextes(Contextes.StartGame);
                 //Joueur.GestionDifficulte(NiveauDifficulte.expert);
-                int manche = 5;
-                textBox3.Text = manche.ToString();
+                joueur.NbManche= 5;
+                textBox3.Text = joueur.NbManche.ToString();
                 //Mots essai = (Mots)Serialisation.LoadJson(@"C:\Windows\Temp\MotsExpertJson.json", typeof(Mots));
                 //foreach (var item in essai)
                 //{
